@@ -1,0 +1,182 @@
+{
+    "option_category": null,
+    "options": [
+        {
+            "option_category": "음료선택",
+            "options": [
+                {
+                    "option_name": "서비스음료 미제공",
+                    "option_price": "0"
+                },
+                {
+                    "option_name": "콜라245ml",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "콜라355ml",
+                    "option_price": "1500"
+                },
+                {
+                    "option_name": "콜라500ml",
+                    "option_price": "2000"
+                },
+                {
+                    "option_name": "콜라1.25l",
+                    "option_price": "3000"
+                }
+            ]
+        },
+        {
+            "option_category": "반마리 추가",
+            "options": [
+                {
+                    "option_name": "허니순살[S]",
+                    "option_price": "13000"
+                },
+                {
+                    "option_name": "레드순살[S]",
+                    "option_price": "13000"
+                },
+                {
+                    "option_name": "간장순살[S]",
+                    "option_price": "13000"
+                }
+            ]
+        },
+        {
+            "option_category": "싱글윙 추가",
+            "options": [
+                {
+                    "option_name": "간장싱글윙",
+                    "option_price": "7900"
+                },
+                {
+                    "option_name": "레드싱글윙",
+                    "option_price": "7900"
+                },
+                {
+                    "option_name": "허니싱글윙",
+                    "option_price": "7900"
+                },
+                {
+                    "option_name": "후라이드싱글윙",
+                    "option_price": "7900"
+                },
+                {
+                    "option_name": "양념치킨싱글윙",
+                    "option_price": "8500"
+                },
+                {
+                    "option_name": "마라레드싱글윙",
+                    "option_price": "7900"
+                }
+            ]
+        },
+        {
+            "option_category": "사이드메뉴",
+            "options": [
+                {
+                    "option_name": "New 교촌X노티드 츄러스(5ea)",
+                    "option_price": "6000"
+                },
+                {
+                    "option_name": "살살후라이드미니",
+                    "option_price": "7000"
+                },
+                {
+                    "option_name": "달걀듬뿍볶음밥",
+                    "option_price": "4500"
+                },
+                {
+                    "option_name": "꽈배기(3ea)",
+                    "option_price": "4000"
+                },
+                {
+                    "option_name": "블랙시크릿팝콘",
+                    "option_price": "2000"
+                },
+                {
+                    "option_name": "포테이토앤칩스(점보팩)",
+                    "option_price": "6500"
+                },
+                {
+                    "option_name": "국물맵떡",
+                    "option_price": "9000"
+                },
+                {
+                    "option_name": "국물맵떡S",
+                    "option_price": "5500"
+                },
+                {
+                    "option_name": "웨지감자",
+                    "option_price": "4000"
+                },
+                {
+                    "option_name": "칩카사바",
+                    "option_price": "2000"
+                },
+                {
+                    "option_name": "퐁듀치즈볼(3ea)",
+                    "option_price": "3500"
+                },
+                {
+                    "option_name": "고르곤치즈볼(3ea)",
+                    "option_price": "3500"
+                },
+                {
+                    "option_name": "샐러드",
+                    "option_price": "5000"
+                }
+            ]
+        },
+        {
+            "option_category": "소스 및 무",
+            "options": [
+                {
+                    "option_name": "양념치킨디핑소스",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "New 화이트크림소스",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "트리플레드소스",
+                    "option_price": "500"
+                },
+                {
+                    "option_name": "K1김치트러플핫소스",
+                    "option_price": "500"
+                },
+                {
+                    "option_name": "허니케찹소스",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "치즈트러플시즈닝",
+                    "option_price": "2000"
+                },
+                {
+                    "option_name": "레드디핑소스",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "무",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "잠발라야소스",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "허니머스타드소스",
+                    "option_price": "1000"
+                },
+                {
+                    "option_name": "하바네로마요소스",
+                    "option_price": "1000"
+                }
+            ]
+        }
+    ]
+}

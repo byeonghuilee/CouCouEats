@@ -1,0 +1,559 @@
+{
+  "menus": [
+    {
+      "menu_category": "인기메뉴",
+      "menu_name": "마라레드윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/mara_red_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "인기메뉴",
+      "menu_name": "후라이드양념반반 한마리",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/fried/banban_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "인기메뉴",
+      "menu_name": "허니윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/honey_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "인기메뉴",
+      "menu_name": "간장 한마리",
+      "menu_price": "19000",
+      "menu_img_path": "./KYOCHON_IMG/soy/soy_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "인기메뉴",
+      "menu_name": "레드 한마리",
+      "menu_price": "20000",
+      "menu_img_path": "./KYOCHON_IMG/red/red_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "인기메뉴",
+      "menu_name": "후라이드 한마리",
+      "menu_price": "21000",
+      "menu_img_path": "./KYOCHON_IMG/fried/fried_one.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "윙박스 시리즈",
+      "menu_name": "마라레드윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/mara_red_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "윙박스 시리즈",
+      "menu_name": "간장윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/soy_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "윙박스 시리즈",
+      "menu_name": "레드윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/red_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "윙박스 시리즈",
+      "menu_name": "허니윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/honey_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "윙박스 시리즈",
+      "menu_name": "후라이드윙박스",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/fried_wing_box.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "윙박스 시리즈",
+      "menu_name": "양념치킨윙박스",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/wingbox/seasoning_wing_box.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "싱글윙 시리즈",
+      "menu_name": "마라레드싱글윙",
+      "menu_price": "7900",
+      "menu_img_path": "./KYOCHON_IMG/singlewing/mara_red_singlewing.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "싱글윙 시리즈",
+      "menu_name": "간장싱글윙",
+      "menu_price": "7900",
+      "menu_img_path": "./KYOCHON_IMG/singlewing/soy_singlewing.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "싱글윙 시리즈",
+      "menu_name": "레드싱글윙",
+      "menu_price": "7900",
+      "menu_img_path": "./KYOCHON_IMG/singlewing/red_singlewing.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "싱글윙 시리즈",
+      "menu_name": "허니싱글윙",
+      "menu_price": "7900",
+      "menu_img_path": "./KYOCHON_IMG/singlewing/honey_singlewing.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "싱글윙 시리즈",
+      "menu_name": "후라이드싱글윙",
+      "menu_price": "7900",
+      "menu_img_path": "./KYOCHON_IMG/singlewing/fried_singlewing.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "싱글윙 시리즈",
+      "menu_name": "양념치킨싱글윙",
+      "menu_price": "8500",
+      "menu_img_path": "./KYOCHON_IMG/singlewing/yang_singlewing.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "허니 시리즈",
+      "menu_name": "허니 한마리",
+      "menu_price": "19000",
+      "menu_img_path": "./KYOCHON_IMG/honey/honey_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 시리즈",
+      "menu_name": "허니콤보",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/honey/honey_combo.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 시리즈",
+      "menu_name": "허니순살",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/honey/honey_soon.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "후라이드 시리즈",
+      "menu_name": "후라이드 한마리",
+      "menu_price": "21000",
+      "menu_img_path": "./KYOCHON_IMG/fried/fried_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "후라이드 시리즈",
+      "menu_name": "양념치킨 한마리",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/fried/seasoning_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "후라이드 시리즈",
+      "menu_name": "후라이드양념반반 한마리",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/fried/banban_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "후라이드 시리즈",
+      "menu_name": "후라이드순살",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/fried/fried_soonsal.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "후라이드 시리즈",
+      "menu_name": "양념치킨순살",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/fried/seasoning_soonsal.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "후라이드 시리즈",
+      "menu_name": "후라이드양념반반순살",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/fried/banbansoonsal.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "허니 옥수수",
+      "menu_name": "허니옥수수순살 국물맵떡세트",
+      "menu_price": "27000",
+      "menu_img_path": "",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 옥수수",
+      "menu_name": "허니옥수수 한마리 국물맵떡세트",
+      "menu_price": "24000",
+      "menu_img_path": "",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 옥수수",
+      "menu_name": "허니옥수수순살 디핑소스세트",
+      "menu_price": "24000",
+      "menu_img_path": "",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 옥수수",
+      "menu_name": "허니옥수수 한마리 디핑소스세트",
+      "menu_price": "21000",
+      "menu_img_path": "",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 옥수수",
+      "menu_name": "허니옥수수순살",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/honeycorn/honey_corn_soon.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "허니 옥수수",
+      "menu_name": "허니옥수수 한마리",
+      "menu_price": "20000",
+      "menu_img_path": "./KYOCHON_IMG/honeycorn/honey_corn_one.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "레드 시리즈",
+      "menu_name": "레드 한마리",
+      "menu_price": "20000",
+      "menu_img_path": "./KYOCHON_IMG/red/red_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "레드 시리즈",
+      "menu_name": "레드콤보",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/red/red_combo.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "간장 시리즈",
+      "menu_name": "간장 한마리",
+      "menu_price": "19000",
+      "menu_img_path": "./KYOCHON_IMG/soy/soy_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "간장 시리즈",
+      "menu_name": "간장콤보",
+      "menu_price": "22000",
+      "menu_img_path": "./KYOCHON_IMG/soy/soy_combo.png",
+      "option_ref": "options.json"
+    },
+        {
+      "menu_category": "반반 시리즈",
+      "menu_name": "반반 한마리",
+      "menu_price": "20000",
+      "menu_img_path": "./KYOCHON_IMG/mix/half_one.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "반반 시리즈",
+      "menu_name": "반반콤보",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/mix/half_combo.png",
+      "option_ref": "options.json"
+    },
+    {
+      "menu_category": "반반 시리즈",
+      "menu_name": "레허반반순살",
+      "menu_price": "23000",
+      "menu_img_path": "./KYOCHON_IMG/mix/half_reho_soon.png",
+      "option_ref": "options.json"
+    },
+    {
+  "menu_category": "살살 시리즈",
+  "menu_name": "살살후라이드",
+  "menu_price": "20000",
+  "menu_img_path": "./KYOCHON_IMG/salsal/salsal_fried.png",
+  "option_ref": "options.json"
+},
+{
+  "menu_category": "살살 시리즈",
+  "menu_name": "파채소이살살",
+  "menu_price": "19000",
+  "menu_img_path": "./KYOCHON_IMG/salsal/wo_soy_salsal.png",
+  "option_ref": "options.json"
+},
+{
+  "menu_category": "반마리 시리즈",
+  "menu_name": "허니순살[S]",
+  "menu_price": "13000",
+  "menu_img_path": "./KYOCHON_IMG/half/honey_soon_s.png",
+  "option_ref": "options.json"
+},
+{
+      "menu_category": "주류",
+      "menu_name": "소주(참이슬후레쉬) 360ml",
+      "menu_price": "4000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "주류",
+      "menu_name": "소주(진로이즈백) 360ml",
+      "menu_price": "4000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "주류",
+      "menu_name": "소주(잎새주) 360ml",
+      "menu_price": "4000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "주류",
+      "menu_name": "생맥주 1000cc",
+      "menu_price": "8000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "주류",
+      "menu_name": "병맥주(카스) 500ml",
+      "menu_price": "4000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "주류",
+      "menu_name": "병맥주(테라) 500ml",
+      "menu_price": "4000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+     {
+      "menu_category": "사이드메뉴",
+      "menu_name": "New 교촌X노티드 츄러스(5ea)",
+      "menu_price": "6000",
+      "menu_img_path": "./KYOCHON_IMG/side/kyo_no_chu.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "살살후라이드미니",
+      "menu_price": "7000",
+      "menu_img_path": "./KYOCHON_IMG/side/salsal_mini.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "달걀듬뿍볶음밥",
+      "menu_price": "4500",
+      "menu_img_path": "./KYOCHON_IMG/side/egg_bob.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "꽈배기(3ea)",
+      "menu_price": "4000",
+      "menu_img_path": "./KYOCHON_IMG/side/twisted_3.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "블랙시크릿팝콘",
+      "menu_price": "2000",
+      "menu_img_path": "./KYOCHON_IMG/side/pop.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "포테이토앤칩스(점보팩)",
+      "menu_price": "6500",
+      "menu_img_path": "./KYOCHON_IMG/side/potato_chip_jumbo.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "국물맵떡",
+      "menu_price": "9000",
+      "menu_img_path": "./KYOCHON_IMG/side/hot_bokki.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "국물맵떡S",
+      "menu_price": "5500",
+      "menu_img_path": "./KYOCHON_IMG/side/hot_bokki_s.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "웨지감자",
+      "menu_price": "4000",
+      "menu_img_path": "./KYOCHON_IMG/side/potato_wedges.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "칩카사바",
+      "menu_price": "2000",
+      "menu_img_path": "./KYOCHON_IMG/side/chip_cassava.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "퐁듀치즈볼(3ea)",
+      "menu_price": "3500",
+      "menu_img_path": "./KYOCHON_IMG/side/fondue_3.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "고르곤치즈볼(3ea)",
+      "menu_price": "3500",
+      "menu_img_path": "./KYOCHON_IMG/side/gorgon_3.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "사이드메뉴",
+      "menu_name": "샐러드",
+      "menu_price": "5000",
+      "menu_img_path": "./KYOCHON_IMG/side/salad.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "양념치킨디핑소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "New 화이트크림소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "트리플레드소스",
+      "menu_price": "500",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "K1김치트러플핫소스",
+      "menu_price": "500",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "허니케찹소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "치즈트러플시즈닝",
+      "menu_price": "2000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "레드디핑소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "무",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "잠발라야소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "허니머스타드소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "소스 및 무",
+      "menu_name": "하바네로마요소스",
+      "menu_price": "1000",
+      "menu_img_path": "",
+      "option_ref": ""
+    },
+     {
+      "menu_category": "음료",
+      "menu_name": "콜라245ml",
+      "menu_price": "1000",
+      "menu_img_path": "./KYOCHON_IMG/drink/coke_255.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "음료",
+      "menu_name": "콜라355ml",
+      "menu_price": "1500",
+      "menu_img_path": "./KYOCHON_IMG/drink/coke_355.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "음료",
+      "menu_name": "콜라500ml",
+      "menu_price": "2000",
+      "menu_img_path": "./KYOCHON_IMG/drink/coke_500.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "음료",
+      "menu_name": "스프라이트500ml",
+      "menu_price": "2000",
+      "menu_img_path": "./KYOCHON_IMG/drink/sprite_500.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "음료",
+      "menu_name": "콜라1.25L",
+      "menu_price": "3000",
+      "menu_img_path": "./KYOCHON_IMG/drink/coke_1250.png",
+      "option_ref": ""
+    },
+    {
+      "menu_category": "음료",
+      "menu_name": "제로콜라1.25L",
+      "menu_price": "3000",
+      "menu_img_path": "./KYOCHON_IMG/drink/zero_coke_1250.png",
+      "option_ref": ""
+    }
+
+  ]
+}
+
