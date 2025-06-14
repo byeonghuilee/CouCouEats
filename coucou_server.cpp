@@ -6,7 +6,7 @@
 #include <string>
 #include <netinet/in.h>    // 소켓 프로그래밍
 #include <unistd.h>        // close(), read(), write()
-#include <nlohmann/json.hpp> // JSON 파싱
+#include "./json.hpp" // JSON 파싱
 #include <mariadb/mysql.h> // MariaDB 연결
 #include <unistd.h>
 #include <fstream>
@@ -20,7 +20,7 @@ std::mutex cout_mutex;
 
 std::string buffer;  // 누적 버퍼
 // 서버가 리슨할 포트 정의
-constexpr int PORT = 20006;
+constexpr int PORT = 12345;
 
 // 클라이언트에 JSON 응답 전송 함수
 void send_json(int client_sock, const json& response) {
