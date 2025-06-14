@@ -26,7 +26,7 @@ MYSQL* connect_db() {
 
 
 int main() {
-    const std::string filename = "OPTIONS.json";
+    const std::string filename = "menu_item_001.json";
     json j;
 
     // 1. JSON 파일 열기
@@ -44,17 +44,18 @@ int main() {
         return 1;
     }
 
-    // cout << "option:" << j["options"][0]["option_category"];
-    if (j["options"][0]["option_category"]=="음료선택")
-    {
-        cout << "option:" << j["options"][0]["options"];
-    }
+    cout << j;
+    // // cout << "option:" << j["options"][0]["option_category"];
+    // if (j["options"][0]["option_category"]=="음료선택")
+    // {
+    //     cout << "option:" << j["options"][0]["options"];
+    // }
     
 
-    MYSQL* conn = connect_db();
-    std::string query = "INSERT INTO STORE(STORE_NAME, STORE_ADDR, PHONE_NUM, OWNER_NUM, COMPANY_NUM, OPENING_TIME,\
-    CLOSING_TIME, DELIVERY_FEE, MINIMUM_ORDER, STORE_DESC, MENU_INFO, OPTION_INFO, ORIGIN_INFO, NUTRITION_INFO, ALLERGEN_INFO)";
+    // MYSQL* conn = connect_db();
+    // std::string query = "INSERT INTO STORE(STORE_NAME, STORE_ADDR, PHONE_NUM, OWNER_NUM, COMPANY_NUM, OPENING_TIME,\
+    // CLOSING_TIME, DELIVERY_FEE, MINIMUM_ORDER, STORE_DESC, MENU_INFO, OPTION_INFO, ORIGIN_INFO, NUTRITION_INFO, ALLERGEN_INFO)";
 
-    mysql_query(conn, query.c_str());
+    // mysql_query(conn, query.c_str());
     return 0;
 }
