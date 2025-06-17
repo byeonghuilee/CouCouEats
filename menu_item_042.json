@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "한우야채죽",
+      "menu_price": "11500",
+      "menu_img_path": "./STORE49_IMG/JOOKSTORY.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

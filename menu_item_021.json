@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "토리카레(매운 닭고기 카레)",
+      "menu_price": "11900",
+      "menu_img_path": "./STORE49_IMG/SOKOA.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

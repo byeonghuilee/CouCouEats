@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "콘듀치킨",
+      "menu_price": "22000",
+      "menu_img_path": "./STORE49_IMG/TTORAE.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

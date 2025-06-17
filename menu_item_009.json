@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "삼산 부대 김치찌개",
+      "menu_price": "9500",
+      "menu_img_path": "./STORE49_IMG/SAMCHUP.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

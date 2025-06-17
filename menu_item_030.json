@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "고구마통모짜 핫도그",
+      "menu_price": "4100",
+      "menu_img_path": "./STORE49_IMG/MUNGLANGHOTDOG.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

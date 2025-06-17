@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "스테이크 포케",
+      "menu_price": "12900",
+      "menu_img_path": "./STORE49_IMG/SALABOUT.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "전통 육개장",
+      "menu_price": "11000",
+      "menu_img_path": "./STORE49_IMG/LEEHWASOO.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

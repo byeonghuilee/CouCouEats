@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "새우로제로제파스타",
+      "menu_price": "13500",
+      "menu_img_path": "./STORE49_IMG/PASTA7.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "갑오징어 통찜",
+      "menu_price": "55000",
+      "menu_img_path": "./STORE49_IMG/CHUNGJUNGSEA.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

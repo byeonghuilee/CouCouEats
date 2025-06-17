@@ -1,0 +1,247 @@
+[
+  {
+    "MENU":"콤비네이션피자",
+    "PRICE":20900,
+    "IMG_PAHT":".\/STORE49_IMG\/AMERICANPIZZA.jpg"
+  },
+  {
+    "MENU":"페페로니피자",
+    "PRICE":11900,
+    "IMG_PAHT":".\/STORE49_IMG\/PIZZASCHOOL.jpg"
+  },
+  {
+    "MENU":"명품 짬뽕",
+    "PRICE":11000,
+    "IMG_PAHT":".\/STORE49_IMG\/JJAMBBONGGUAN.jpg"
+  },
+  {
+    "MENU":"해물쟁반짜장",
+    "PRICE":10000,
+    "IMG_PAHT":".\/STORE49_IMG\/GUELIM.jpg"
+  },
+  {
+    "MENU":"벌교 꼬막비빔밥 + 소고기미역국",
+    "PRICE":12500,
+    "IMG_PAHT":".\/STORE49_IMG\/.jpg"
+  },
+  {
+    "MENU":"물비냉",
+    "PRICE":9500,
+    "IMG_PAHT":".\/STORE49_IMG\/NAMGMUNUKGA.jpg"
+  },
+  {
+    "MENU":"청춘꼬마김밥",
+    "PRICE":5200,
+    "IMG_PAHT":".\/STORE49_IMG\/CHUNGCHUNKIMBAB.jpg"
+  },
+  {
+    "MENU":"[삽첩]떡볶이",
+    "PRICE":8900,
+    "IMG_PAHT":".\/STORE49_IMG\/SAMCHUP.jpg"
+  },
+  {
+    "MENU":"삼산 부대 김치찌개",
+    "PRICE":9500,
+    "IMG_PAHT":".\/STORE49_IMG\/SAMCHUP.jpg"
+  },
+  {
+    "MENU":"전통 육개장",
+    "PRICE":11000,
+    "IMG_PAHT":".\/STORE49_IMG\/LEEHWASOO.jpg"
+  },
+  {
+    "MENU":"뿌링클 콤보",
+    "PRICE":26000,
+    "IMG_PAHT":".\/STORE49_IMG\/BHC.jpg"
+  },
+  {
+    "MENU":"정성가득 수제카츠",
+    "PRICE":11000,
+    "IMG_PAHT":".\/STORE49_IMG\/DONGIVEUP.jpg"
+  },
+  {
+    "MENU":"트리플 모둠카츠 정식",
+    "PRICE":15900,
+    "IMG_PAHT":".\/STORE49_IMG\/JUNGSUNG.jpg"
+  },
+  {
+    "MENU":"반반족발",
+    "PRICE":46000,
+    "IMG_PAHT":".\/STORE49_IMG\/KKANJOK.jpg"
+  },
+  {
+    "MENU":"보쌈",
+    "PRICE":35000,
+    "IMG_PAHT":".\/STORE49_IMG\/JUNGGAWNSUK.jpg"
+  },
+  {
+    "MENU":"한상가득 우사골 순대국밥",
+    "PRICE":10000,
+    "IMG_PAHT":".\/STORE49_IMG\/SOONDAEGUKBAB.jpg"
+  },
+  {
+    "MENU":"모둠국밥",
+    "PRICE":11000,
+    "IMG_PAHT":".\/STORE49_IMG\/JOBONGSUN.jpg"
+  },
+  {
+    "MENU":"한돈 생삼겹살",
+    "PRICE":24000,
+    "IMG_PAHT":".\/STORE49_IMG\/HANDON.jpg"
+  },
+  {
+    "MENU":"고기250g+칼국수1",
+    "PRICE":17900,
+    "IMG_PAHT":".\/STORE49_IMG\/YOKKUNSAGAN.jpg"
+  },
+  {
+    "MENU":"모듬초밥 10p",
+    "PRICE":13900,
+    "IMG_PAHT":".\/STORE49_IMG\/BARUNSUSHI.jpg"
+  },
+  {
+    "MENU":"토리카레(매운 닭고기 카레)",
+    "PRICE":11900,
+    "IMG_PAHT":".\/STORE49_IMG\/SOKOA.jpg"
+  },
+  {
+    "MENU":"광어",
+    "PRICE":40000,
+    "IMG_PAHT":".\/STORE49_IMG\/SOEHAISUSAN.jpg"
+  },
+  {
+    "MENU":"갑오징어 통찜",
+    "PRICE":55000,
+    "IMG_PAHT":".\/STORE49_IMG\/CHUNGJUNGSEA.jpg"
+  },
+  {
+    "MENU":"오븐치즈크림스파게티",
+    "PRICE":11900,
+    "IMG_PAHT":".\/STORE49_IMG\/KKARUBONE.jpg"
+  },
+  {
+    "MENU":"새우로제로제파스타",
+    "PRICE":13500,
+    "IMG_PAHT":".\/STORE49_IMG\/PASTA7.jpg"
+  },
+  {
+    "MENU":"아메리카노",
+    "PRICE":2500,
+    "IMG_PAHT":".\/STORE49_IMG\/TENPERCENT.jpg"
+  },
+  {
+    "MENU":"빅포즈 아메리카노",
+    "PRICE":3500,
+    "IMG_PAHT":".\/STORE49_IMG\/COMPOSE.jpg"
+  },
+  {
+    "MENU":"밀크팥멜론몽땅설빙",
+    "PRICE":17500,
+    "IMG_PAHT":".\/STORE49_IMG\/SULBING.jpg"
+  },
+  {
+    "MENU":"(아이스)아메리카노",
+    "PRICE":2500,
+    "IMG_PAHT":".\/STORE49_IMG\/THEVENTI.jpg"
+  },
+  {
+    "MENU":"고구마통모짜 핫도그",
+    "PRICE":4100,
+    "IMG_PAHT":".\/STORE49_IMG\/MUNGLANGHOTDOG.jpg"
+  },
+  {
+    "MENU":"오징어 상추튀김 1Box(2인)",
+    "PRICE":17800,
+    "IMG_PAHT":".\/STORE49_IMG\/SANGCHU.jpg"
+  },
+  {
+    "MENU":"소고기 쌀국수 (Pho bo)",
+    "PRICE":10000,
+    "IMG_PAHT":".\/STORE49_IMG\/FOURBIET.jpg"
+  },
+  {
+    "MENU":"후띠우까이 매운쌀국수",
+    "PRICE":12000,
+    "IMG_PAHT":".\/STORE49_IMG\/HANOAAAI.jpg"
+  },
+  {
+    "MENU":"에치햄 샌드위치",
+    "PRICE":6500,
+    "IMG_PAHT":".\/STORE49_IMG\/DUNADERDA.jpg"
+  },
+  {
+    "MENU":"대파치즈 베이글",
+    "PRICE":3500,
+    "IMG_PAHT":".\/STORE49_IMG\/BAGEL.jpg"
+  },
+  {
+    "MENU":"쉬림프 아보 샐러드",
+    "PRICE":12900,
+    "IMG_PAHT":".\/STORE49_IMG\/CHUSALAD.jpg"
+  },
+  {
+    "MENU":"스테이크 포케",
+    "PRICE":12900,
+    "IMG_PAHT":".\/STORE49_IMG\/SALABOUT.jpg"
+  },
+  {
+    "MENU":"수제 유학파(치즈) 떡갈비버거",
+    "PRICE":8800,
+    "IMG_PAHT":".\/STORE49_IMG\/TTOEKGALBI.jpg"
+  },
+  {
+    "MENU":"1인 탄산세트",
+    "PRICE":5500,
+    "IMG_PAHT":".\/STORE49_IMG\/EGG2000.jpg"
+  },
+  {
+    "MENU":"양고기꼬치 2인",
+    "PRICE":14000,
+    "IMG_PAHT":".\/STORE49_IMG\/SAMARKANT.jpg"
+  },
+  {
+    "MENU":"소고기야채죽",
+    "PRICE":12500,
+    "IMG_PAHT":".\/STORE49_IMG\/BORNJOOK.jpg"
+  },
+  {
+    "MENU":"한우야채죽",
+    "PRICE":11500,
+    "IMG_PAHT":".\/STORE49_IMG\/JOOKSTORY.jpg"
+  },
+  {
+    "MENU":"황금올리브치킨",
+    "PRICE":23000,
+    "IMG_PAHT":".\/STORE49_IMG\/BBQ.jpg"
+  },
+  {
+    "MENU":"칠분통닭",
+    "PRICE":11000,
+    "IMG_PAHT":".\/STORE49_IMG\/CHILLBUN.jpg"
+  },
+  {
+    "MENU":"콘듀치킨",
+    "PRICE":22000,
+    "IMG_PAHT":".\/STORE49_IMG\/TTORAE.jpg"
+  },
+  {
+    "MENU":"크크크치킨",
+    "PRICE":23900,
+    "IMG_PAHT":".\/STORE49_IMG\/SIXTY.jpg"
+  },
+  {
+    "MENU":"카페모카",
+    "PRICE":44000,
+    "IMG_PAHT":".\/STORE49_IMG\/MEGACOFFEE.jpg"
+  },
+  {
+    "MENU":"달고나카페라뗴",
+    "PRICE":4200,
+    "IMG_PAHT":".\/STORE49_IMG\/BULKCOFFEE.jpg"
+  },
+  {
+    "MENU":"디카페인 ICED 연유 카페 라떼",
+    "PRICE":5300,
+    "IMG_PAHT":".\/STORE49_IMG\/EDIYA.jpg"
+  }
+]

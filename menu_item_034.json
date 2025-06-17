@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "에치햄 샌드위치",
+      "menu_price": "6500",
+      "menu_img_path": "./STORE49_IMG/DUNADERDA.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

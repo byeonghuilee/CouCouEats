@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "소고기야채죽",
+      "menu_price": "12500",
+      "menu_img_path": "./STORE49_IMG/BORNJOOK.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}

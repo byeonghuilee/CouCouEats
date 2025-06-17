@@ -1,0 +1,13 @@
+{
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "물비냉",
+      "menu_price": "9500",
+      "menu_img_path": "./STORE49_IMG/NAMGMUNUKGA.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
+}
