@@ -20,7 +20,7 @@ std::mutex cout_mutex;
 
 std::string buffer;  // 누적 버퍼
 // 서버가 리슨할 포트 정의
-constexpr int PORT = 12345;
+constexpr int PORT = 11112;
 
 // 클라이언트에 JSON 응답 전송 함수
 void send_json(int client_sock, const json& response) {
@@ -33,7 +33,7 @@ void send_json(int client_sock, const json& response) {
 //////////////////////////////
 MYSQL* connect_db() {
     MYSQL* conn = mysql_init(nullptr);
-    if (!mysql_real_connect(conn, "10.10.20.118", "LBH", "1234", "CouCouEats", 0, NULL, 0)) {
+    if (!mysql_real_connect(conn, "localhost", "root", "1111", "coucoueats", 0, NULL, 0)) {//if (!mysql_real_connect(conn, "10.10.20.118", "LBH", "1234", "CouCouEats", 0, NULL, 0)) {
         std::lock_guard<std::mutex> lock(cout_mutex);
         std::cerr << "MariaDB connection failed: " << mysql_error(conn) << std::endl;
         return nullptr;
@@ -370,9 +370,9 @@ void handle_json_message(const std::string& message, int client_sock) {
                         int num_rows = mysql_num_rows(result);  // 결과 행 개수 확인
                         cout << num_rows;
                         if (num_rows > 0) {
-                            send_json(client_sock, {{"signal", "login"},{"result", "success"}});
+                            send_json(client_sock, {{"signal", "store_login_result"},{"result", "success"}});
                         } else {
-                            send_json(client_sock, {{"signal", "login"},{"result", "fail"}});
+                            send_json(client_sock, {{"signal", "store_login_result"},{"result", "fail"}});
                         }
                         mysql_free_result(result);  // 메모리 해제
                     }

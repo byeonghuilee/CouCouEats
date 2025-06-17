@@ -1,0 +1,24 @@
+#include <algorithm> // std::count_if
+#include <QJsonArray>
+#include <QJsonObject>
+
+QJsonArray menusArray = storeObject["menus"].toArray();
+
+// QJsonArray → QList<QJsonObject> 변환
+QList<QJsonObject> menuList;
+for (const QJsonValue& val : menusArray) {
+    menuList.append(val.toObject());
+}
+
+// ACTIVE 수 카운트
+int activeCount = std::count_if(menuList.begin(), menuList.end(), [](const QJsonObject& obj) {
+    return obj["menu_status"].toString().toUpper() == "ACTIVE";
+});
+
+// DEACTIVE 수 카운트
+int deactiveCount = std::count_if(menuList.begin(), menuList.end(), [](const QJsonObject& obj) {
+    return obj["menu_status"].toString().toUpper() == "DEACTIVE";
+});
+
+qDebug() << "ACTIVE 메뉴 수:" << activeCount;
+qDebug() << "DEACTIVE 메뉴 수:" << deactiveCount;
