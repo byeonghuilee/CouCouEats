@@ -1,5 +1,13 @@
 {
-  "MENU": "페페로니피자",
-  "PRICE": 11900,
-  "IMG_PAHT": "./STORE49_IMG/PIZZASCHOOL.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "페페로니피자",
+      "menu_price": "11900",
+      "menu_img_path": "./STORE49_IMG/PIZZASCHOOL.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

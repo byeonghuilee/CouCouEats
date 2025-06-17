@@ -1,5 +1,13 @@
 {
-  "MENU": "보쌈",
-  "PRICE": 35000,
-  "IMG_PAHT": "./STORE49_IMG/JUNGGAWNSUK.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "보쌈",
+      "menu_price": "35000",
+      "menu_img_path": "./STORE49_IMG/JUNGGAWNGSUK.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

@@ -1,5 +1,13 @@
 {
-  "MENU": "쉬림프 아보 샐러드",
-  "PRICE": 12900,
-  "IMG_PAHT": "./STORE49_IMG/CHUSALAD.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "쉬림프 아보 샐러드",
+      "menu_price": "12900",
+      "menu_img_path": "./STORE49_IMG/CHUSALAD.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

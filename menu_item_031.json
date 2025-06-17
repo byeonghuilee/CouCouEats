@@ -1,5 +1,13 @@
 {
-  "MENU": "오징어 상추튀김 1Box(2인)",
-  "PRICE": 17800,
-  "IMG_PAHT": "./STORE49_IMG/SANGCHU.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "오징어 상추튀김 1Box(2인)",
+      "menu_price": "17800",
+      "menu_img_path": "./STORE49_IMG/SANGCHU.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

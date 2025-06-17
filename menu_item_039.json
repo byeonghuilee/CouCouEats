@@ -1,5 +1,13 @@
 {
-  "MENU": "1인 탄산세트",
-  "PRICE": 5500,
-  "IMG_PAHT": "./STORE49_IMG/EGG2000.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "1인 탄산세트",
+      "menu_price": "5500",
+      "menu_img_path": "./STORE49_IMG/EGG2000.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

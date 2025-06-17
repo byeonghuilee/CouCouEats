@@ -1,5 +1,13 @@
 {
-  "MENU": "트리플 모둠카츠 정식",
-  "PRICE": 15900,
-  "IMG_PAHT": "./STORE49_IMG/JUNGSUNG.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "트리플 모둠카츠 정식",
+      "menu_price": "15900",
+      "menu_img_path": "./STORE49_IMG/JUNGSUNG.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

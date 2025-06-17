@@ -1,5 +1,13 @@
 {
-  "MENU": "소고기 쌀국수 (Pho bo)",
-  "PRICE": 10000,
-  "IMG_PAHT": "./STORE49_IMG/FOURBIET.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "소고기 쌀국수 (Pho bo)",
+      "menu_price": "10000",
+      "menu_img_path": "./STORE49_IMG/FOURBIET.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

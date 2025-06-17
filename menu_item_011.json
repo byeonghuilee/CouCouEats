@@ -1,5 +1,13 @@
 {
-  "MENU": "뿌링클 콤보",
-  "PRICE": 26000,
-  "IMG_PAHT": "./STORE49_IMG/BHC.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "뿌링클 콤보",
+      "menu_price": "26000",
+      "menu_img_path": "./STORE49_IMG/BHC.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

@@ -1,5 +1,13 @@
 {
-  "MENU": "해물쟁반짜장",
-  "PRICE": 10000,
-  "IMG_PAHT": "./STORE49_IMG/GUELIM.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "해물쟁반짜장",
+      "menu_price": "10000",
+      "menu_img_path": "./STORE49_IMG/GUELIM.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

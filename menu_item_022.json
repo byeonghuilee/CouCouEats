@@ -1,5 +1,13 @@
 {
-  "MENU": "광어",
-  "PRICE": 40000,
-  "IMG_PAHT": "./STORE49_IMG/SOEHAISUSAN.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "광어",
+      "menu_price": "40000",
+      "menu_img_path": "./STORE49_IMG/SEOHAISUSAN.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

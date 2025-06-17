@@ -1,5 +1,13 @@
 {
-  "MENU": "밀크팥멜론몽땅설빙",
-  "PRICE": 17500,
-  "IMG_PAHT": "./STORE49_IMG/SULBING.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "밀크팥멜론몽땅설빙",
+      "menu_price": "17500",
+      "menu_img_path": "./STORE49_IMG/SULBING.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

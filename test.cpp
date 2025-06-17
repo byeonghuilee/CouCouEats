@@ -24,6 +24,25 @@ MYSQL* connect_db() {
     return conn;
 }
 
+void createEmptyJsonFile(const std::string& name, bool asArray = false) {
+    std::string filename = "MENU_" + name + ".json";
+
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "파일을 생성할 수 없습니다: " << filename << std::endl;
+        return;
+    }
+
+    json empty = asArray ? json::array() : json::object();  // {} 또는 []
+
+    file << empty.dump(4);  // 들여쓰기 4칸
+    file.close();
+
+    std::cout << filename << " 빈 JSON " 
+              << (asArray ? "배열" : "객체") 
+              << " 파일이 생성되었습니다." << std::endl;
+}
+
 
 int main() {
     const std::string filename = "menu_item_001.json";

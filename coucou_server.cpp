@@ -482,6 +482,7 @@ void handle_json_message(const std::string& message, int client_sock) {
             }
             else if (role == "store")
             {
+                cout << "store:" << j <<endl;
                 string store_id = j["id"];
                 string pw = j["pw"];
                 string login_query = "SELECT PNUM FROM OWNER_INFO WHERE BUSINESS_ID = '" + store_id + "' AND PW = '" + pw + "'";
@@ -497,9 +498,10 @@ void handle_json_message(const std::string& message, int client_sock) {
                     } else {
                         std::cout << "결과 없음 또는 NULL\n";
                     }
-                    std::string query = "SELECT * FROM STORE";
+                    cout << "pnum:"<<pnum<<endl;
+                    std::string query2 = "SELECT * FROM STORE";
 
-                    if (mysql_query(conn, query.c_str()) == 0) {
+                    if (mysql_query(conn, query2.c_str()) == 0) {
                         MYSQL_RES* result = mysql_store_result(conn);
                         MYSQL_ROW row;
                         json store = json::array();
@@ -524,7 +526,7 @@ void handle_json_message(const std::string& message, int client_sock) {
                             if (row[1]) {
                                 try {
                                     category = std::stoi(row[1]);
-                                } catch (...) {
+                                } catch (const std::exception& e) {
                                     category = 0; // fallback
                                 }
                             }

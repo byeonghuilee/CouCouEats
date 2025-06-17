@@ -1,5 +1,13 @@
 {
-  "MENU": "카페모카",
-  "PRICE": 44000,
-  "IMG_PAHT": "./STORE49_IMG/MEGACOFFEE.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "카페모카",
+      "menu_price": "44000",
+      "menu_img_path": "./STORE49_IMG/MEGACOFFEE.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

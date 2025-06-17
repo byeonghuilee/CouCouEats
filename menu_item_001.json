@@ -1,5 +1,13 @@
 {
-  "MENU": "콤비네이션피자",
-  "PRICE": 20900,
-  "IMG_PAHT": "./STORE49_IMG/AMERICANPIZZA.jpg"
+  "menus" : [
+    {
+      "menu_category": "",
+      "menu_name": "콤비네이션피자",
+      "menu_price": "20900",
+      "menu_img_path": "./STORE49_IMG/AMERICANPIZZA.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+     }
+  ]
 }

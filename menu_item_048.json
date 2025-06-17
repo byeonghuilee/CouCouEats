@@ -1,5 +1,13 @@
 {
-  "MENU": "달고나카페라뗴",
-  "PRICE": 4200,
-  "IMG_PAHT": "./STORE49_IMG/BULKCOFFEE.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "달고나카페라떼",
+      "menu_price": "4200",
+      "menu_img_path": "./STORE49_IMG/BULKCOFFEE.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }

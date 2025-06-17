@@ -1,5 +1,13 @@
 {
-  "MENU": "양고기꼬치 2인",
-  "PRICE": 14000,
-  "IMG_PAHT": "./STORE49_IMG/SAMARKANT.jpg"
+  "menus": [
+    {
+      "menu_category": "",
+      "menu_name": "양고기꼬치 2인",
+      "menu_price": "14000",
+      "menu_img_path": "./STORE49_IMG/SAMARKANT.jpg",
+      "menu_info": "",
+      "menu_status": "ACTIVE",
+      "menu_options": ""
+    }
+  ]
 }
