@@ -21,7 +21,7 @@ using json = nlohmann::json;
 using namespace std;
 void createEmptyJsonFile(const std::string& name);
 void createEmptyJsonFile_new(const std::string& name, const std::string& path, bool asArray);
-void appendMenuItemLatestFirst(const std::string& name, const std::string& path, const json& newItem);
+void appendKeywordItemLatestFirst(const std::string& name, const std::string& path, const json& newItem);
 string getCurrentTimeString();
 string category_name(int category);
 int get_socket_for_ip(const std::string& ip);
@@ -47,7 +47,7 @@ struct socket_info {
 };
 
 // 서버가 리슨할 포트 정의
-constexpr int PORT = 10010;
+constexpr int PORT = 10011;
 
 
 // 클라이언트에 JSON 응답 전송 함수
@@ -1518,7 +1518,7 @@ void createEmptyJsonFile_new(const std::string& name, const std::string& path, b
 
 
 // 메뉴 항목 추가 및 삭제 (최신순 저장 포함)
-void appendMenuItemLatestFirst(const std::string& name, const std::string& path, const json& newItem) {
+void appendKeywordItemLatestFirst(const std::string& name, const std::string& path, const json& newItem) {
     std::filesystem::create_directories(path);
     std::string filename = path + "/" + name + ".json";
 
