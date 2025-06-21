@@ -1,0 +1,308 @@
+상호명	restaurant_name				'KYOCHON'
+주소	store_addr				'광주광역시 광산구 소촌로152번길 30'
+전화번호	phone_number				'062-942-1200'
+대표자명	owner_name				'박종문'
+사업자등록번호	company_number			'150-18-00159'
+오픈시간	opening_time				'12:00'
+종료시간	closing_time				'월~토 23:20'/'일 22:30'
+배달비	delivery_fee				'무료배달 21000원 이상 / 한집배달 80000원 이하 1000원'
+최소주문	minimum_order				'21000원'
+매장소개	restaurant_desc				'안녕하세요. 교촌치킨 입니다.'
+메뉴 정보	menu_info			'./MENU_KYOCHON.json'
+원산지정보	origin_info			'닭고기[전체메뉴 국내산(윙박스시리즈, 싱글윙시리즈 제외), 윙박스시리즈, 싱글윙시리즈 태국산]/쌀 국내산'					
+영양성분정보	nutrition_fact			'https://www.kyochon.com/menu/chicken.asp'
+알레르기유발정보	allergen_info			'https://www.kyochon.com/menu/allergyinfo.asp'
+상태	status					
+
+CREATE TABLE STORE (
+    R_ID INT AUTO_INCREMENT PRIMARY KEY,
+    STORE_NAME VARCHAR(50),
+    STORE_ADDR VARCHAR(50),
+    PHONE_NUM VARCHAR(50),
+    OWNER_NUM VARCHAR(20),
+    COMPANY_NUM VARCHAR(50),
+    OPENING_TIME VARCHAR(25),
+    CLOSING_TIME VARCHAR(25),
+    DELIVERY_FEE VARCHAR(30),
+    MINIMUM_ORDER VARCHAR(20),
+    STORE_DESC VARCHAR(40),
+    MENU_INFO VARCHAR(30),
+    OPTION_INFO VARCHAR(30),
+    ORIGIN_INFO VARCHAR(30),
+    NUTRITION_INFO VARCHAR(30),
+    ALLERGEN_INFO VARCHAR(30)
+);
+
+CREATE TABLE STORE (
+    S_ID INT AUTO_INCREMENT PRIMARY KEY,                         
+    CATEGORY_NUM TINYINT,                             
+    STORE_NAME VARCHAR(50),                        
+    STORE_ADDR VARCHAR(50),                             
+    PHONE_NUM VARCHAR(50),                         
+    OWNER_NAME VARCHAR(20),                             
+    COMPANY_NUM VARCHAR(50),                        
+    OPENING_TIME VARCHAR(25),                           
+    CLOSING_TIME VARCHAR(25),
+    DELIVERY_AREA VARCHAR(255), 
+    DELIVERY_FEE VARCHAR(255),                                   
+    MINIMUM_ORDER VARCHAR(20),                                  
+    STORE_DESC VARCHAR(1000),                      
+    MENU_INFO VARCHAR(25),                             
+    ORIGIN_INFO VARCHAR(255),                                     
+    NUTRITION_FACT VARCHAR(255),  
+    ALLERGEN_INFO VARCHAR(255),             
+    STATUS VARCHAR(10) DEFAULT 'ACTIVE'                         
+);
+
+INSERT INTO STORE (
+    CATEGORY_NUM,
+    STORE_NAME,
+    STORE_ADDR,
+    PHONE_NUM,
+    OWNER_NAME,
+    COMPANY_NUM,
+    OPENING_TIME,
+    CLOSING_TIME,
+    DELIVERY_FEE,
+    MINIMUM_ORDER,
+    STORE_DESC,
+    MENU_INFO,
+    ORIGIN_INFO,
+    NUTRITION_FACT,
+    ALLERGEN_INFO,
+    STATUS
+) VALUES (118, 'KYOCHON', '광주광역시 광산구 소촌로152번길 30', '062-942-1200', '박종문', '150-18-00159', '12:00', '월~토 23:20/일 22:30', '무료배달 21000원 이상 / 한집배달 80000원 이하 1000원', '21000원', '안녕하세요. 교촌치킨 입니다.', './MENU_KYOCHON.json', '닭고기[전체메뉴 국내산(윙박스시리즈, 싱글윙시리즈 제외), 윙박스시리즈, 싱글윙시리즈 태국산]/쌀 국내산', 'https://www.kyochon.com/menu/chicken.asp', 'https://www.kyochon.com/menu/allergyinfo.asp', 'ACTIVE');
+
+상호명	restaurant_name				'KYOCHON'
+주소	store_addr				'광주광역시 광산구 소촌로152번길 30'
+전화번호	phone_number				'062-942-1200'
+대표자명	owner_name				'박종문'
+사업자등록번호	company_number			'150-18-00159'
+오픈시간	opening_time				'12:00'
+종료시간	closing_time				'월~토 23:20'/'일 22:30'
+배달비	delivery_fee				'무료배달 21000원 이상 / 한집배달 80000원 이하 1000원'
+최소주문	minimum_order				'21000원'
+매장소개	restaurant_desc				'안녕하세요. 교촌치킨 입니다.'
+메뉴 정보	menu_info			'./MENU_KYOCHON.json'
+원산지정보	origin_info			'닭고기[전체메뉴 국내산(윙박스시리즈, 싱글윙시리즈 제외), 윙박스시리즈, 싱글윙시리즈 태국산]/쌀 국내산'					
+영양성분정보	nutrition_fact			'https://www.kyochon.com/menu/chicken.asp'
+알레르기유발정보	allergen_info			'https://www.kyochon.com/menu/allergyinfo.asp'
+상태	status					'ACTIVE' 
+
+
+INSERT INTO STORE (
+    CATEGORY_NUM,
+    STORE_NAME,
+    STORE_ADDR,
+    PHONE_NUM,
+    OWNER_NAME,
+    COMPANY_NUM,
+    OPENING_TIME,
+    CLOSING_TIME,
+    DELIVERY_FEE,
+    MINIMUM_ORDER,
+    STORE_DESC,
+    MENU_INFO,
+    ORIGIN_INFO,
+    NUTRITION_FACT,
+    ALLERGEN_INFO,
+    STATUS
+) VALUES (118, 'BHC 소촌우산점', '광주광역시 광산구 무진대로212번길 29-27 1층', '062-945-2099', '강정렬', '431-22-01321', '11:30', '월~일 23:30/목 휴일', '무료배달 20000원이상/한집배달 80000원이상 무료','20000원', '안녕하세요 BHC 입니다.', './MENU_BHC.json', 'bhc는 모든 치킨 메뉴에 100% 국내산 닭만을 사용합니다.','https://www.bhc.co.kr/menu/chicken.asp', 'https://www.bhc.co.kr/menu/allergy.asp', 'ACTIVE');
+
+(
+
+CREATE TABLE USER_INFO (
+    USER_ID INT AUTO_INCREMENT PRIMARY KEY,
+    EMAIL VARCHAR(30),
+    PW VARCHAR(30),
+    NAME VARCHAR(30),
+    PNUM VARCHAR(30),
+    BIRTH VARCHAR(30)
+);
+CREATE TABLE USER_INFO(USER_ID INT(20) AUTO_INCREMENT PRIMARY_KEY, EMAIL VARCHAR(30), PW VARCHAR(30), NAME VARCHAR(30), BIRTH VARCHAR(30));
+
+PK	회원아이디	id		int auto_increment	N
+	이메일	email		varchar(45)	Y
+	비밀번호	password		varchar(50)	Y
+	생년월일	birth		varchar(20)	Y
+	이름	name		varchar(20)	Y
+	전화번호	phone_number		varchar(45)	Y
+	
+
+INSERT INTO USER_INFO(EMAIL, PW, NAME, BIRTH) VALUES();
+
+INSERT INTO USER_INFO(EMAIL, PW, NAME, PNUM, BIRTH) VALUES('admin@naver.com', '1234', '관리자', '01011111111','2025-06-12');
+
+사업자등록번호
+사업자아이디
+이메일
+비밀번호
+이름
+휴태폰번호
+
+CREATE TABLE OWNER_INFO(O_ID INT(20) AUTO_INCREMENT PRIMARY KEY, BRNUM VARCHAR(25), BUSINESS_ID VARCHAR(30), PW VARCHAR(30), NAME VARCHAR(30), PNUM VARCHAR(30), INDUSTRY VARCHAR(30));
+Business Registration Number
+사업자아이디	Business ID
+이메일	Email
+비밀번호	Password
+이름	Name
+휴대폰번호	Mobile Phone Number
+
+
+INSERT INTO OWNER_INFO(BRNUM, BUSINESS_ID, PW, NAME, PNUM, INDUSTRY) VALUES('150-18-00159', 'KYO', '1234', '박종문', '062-942-1200', '일반음식점');
+
+
+CREATE TABLE RIDER_INFO(RIDER_NUM INT(20) AUTO_INCREMENT PRIMARY KEY, PNUM VARCHAR(30), PW VARCHAR(30), NAME VARCHAR(30), PI VARCHAR(30), RIDER_ADDR VARCHAR(255), MOTORCYCLE_NUM VARCHAR(30), LOCAL VARCHAR(255), DELIVERY_FEE VARCHAR(100));
+
+    CATEGORY_NUM   | tinyint(4)    | NO   |     | NULL    |                |
+| STORE_NAME     | varchar(50)   | NO   |     | NULL    |                |
+| STORE_ADDR     | varchar(50)   | NO   |     | NULL    |                |
+| PHONE_NUM      | varchar(50)   | NO   |     | NULL    |                |
+| OWNER_NAME     | varchar(20)   | NO   |     | NULL    |                |
+| COMPANY_NUM    | varchar(50)   | NO   |     | NULL    |                |
+| OPENING_TIME   | varchar(25)   | NO   |     | NULL    |                |
+| CLOSING_TIME   | varchar(25)   | NO   |     | NULL    |                |
+| DELIVERY_FEE   | varchar(255)  | NO   |     | NULL    |                |
+| MINIMUM_ORDER  | varchar(20)   | NO   |     | NULL    |                |
+| STORE_DESC     | varchar(1000) | NO   |     | NULL    |                |
+| MENU_INFO      | varchar(25)   | NO   |     | NULL    |                |
+| ORIGIN_INFO    | varchar(255)  | YES  |     | NULL    |                |
+| NUTRITION_FACT | varchar(255)  | YES  |     | NULL    |                |
+| ALLERGEN_INFO  | varchar(255)  | YES  |     | NULL    |                |
+| STATUS    
+
+CREATE TABLE CARTS(CART_ID INT(20) AUTO_INCREMENT PRIMARY KEY, USER_EMAIL VARCHAR(50), TOTAL_PRICE VARCHAR(25), STATUS VARCHAR(25));
+
+CREATE TABLE CART_DETAILS(CD_ID INT(20),CART_ID INT(20), MENU VARCHAR(30), OPTION VARCHAR(30), PRICE VARCHAR(20),CONSTRAINT FK_CART_ID FOREIGN KEY (CART_ID) REFERENCES CARTS(CART_ID));
+
+
+CREATE TABLE CARTS (
+    CART_ID INT(20) AUTO_INCREMENT PRIMARY KEY,
+    USER_EMAIL VARCHAR(50),
+    STORE_NAME VARCHAR(50),
+    TOTAL_PRICE VARCHAR(25),
+    STATUS VARCHAR(25)
+);
+
+CREATE TABLE CART_DETAILS (
+    CD_ID INT(20) AUTO_INCREMENT PRIMARY KEY, 
+    CART_ID INT(20),
+    MENU VARCHAR(30),
+    OPTION VARCHAR(30),
+    PRICE VARCHAR(20),
+    QUANTITY VARCHAR(30), 
+    CONSTRAINT FK_CART_ID FOREIGN KEY (CART_ID) REFERENCES CARTS(CART_ID)
+);
+
+CREATE TABLE USER_FAVORITES(F_ID INT(20) AUTO_INCREMENT PRIMARY KEY, USER_ID INT(20), STORE_NAME VARCHAR(30), CONSTRAINT FK_USER_ID FOREIGN KEY (USER_ID) REFERENCES USER_INFO(USER_ID));
+
+CREATE TABLE USER_ADDR(ADDR_ID INT(20) AUTO_INCREMENT PRIMARY KEY, EMAIL INT(20), BASIC_ADDR VARCHAR(255), DETAIL_ADDR VARCHAR(255), DIRECTION VARCHAR(255), IS_PRIMARY VARCHAR(10) CONSTRAINT FK_EMAIL FOREIGN KEY (EMAIL) REFERENCES USER_INFO(EMAIL));
+
+CREATE TABLE USER_ADDR (
+    ADDR_ID INT AUTO_INCREMENT PRIMARY KEY,
+    EMAIL VARCHAR(50),
+    BASIC_ADDR VARCHAR(255),
+    DETAIL_ADDR VARCHAR(255),
+    DIRECTION VARCHAR(255),
+    IS_PRIMARY VARCHAR(10),
+    TYPE VARCHAR(20),
+    CONSTRAINT FK_EMAIL FOREIGN KEY (EMAIL) REFERENCES USER_INFO(EMAIL)
+);
+
+
+ALTER TABLE USER_INFO ADD UNIQUE (EMAIL);
+
+CREATE TABLE USER_ADDR (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    EMAIL VARCHAR(50),
+    ADDR_DETAIL VARCHAR(255),
+    PLACE VARCHAR(15),
+    FOREIGN KEY (EMAIL) REFERENCES USER_INFO(EMAIL)
+);
+
+SELECT 
+    c.CART_ID,
+    c.USER_EMAIL,
+    c.STORE_NAME,
+    c.TOTAL_PRICE,
+    c.STATUS,
+    d.CD_ID,
+    d.MENU,
+    d.OPTION,
+    d.PRICE,
+    d.QUANTITY
+FROM CARTS c
+JOIN CART_DETAILS d ON c.CART_ID = d.CART_ID WHERE c.USER_EMAIL = ;
+
+
+CREATE TABLE KEYWORD(KEY_ID INT(20) AUTO_INCREMENT PRIMARY KEY, USER_ID VARCHAR(50), KEYWORD_PATH VARCHAR(40));
+
+CREATE TABLE ORDER_INFO(O_ID INT(20) AUTO_INCREMENT PRIMARY KEY, DELIVERY_NUM VARCHAR(100),EMAIL VARCHAR(50), USER_ADDR VARCHAR(1000),ONCE_PLASTIC VARCHAR(15), TO_OWNER VARCHAR(1000), TO_RIDER VARCHAR(1000), MENUS VARCHAR(4000), TIME TIMESTAMP, DELIVERY_STATUS VARCHAR(20), RIDER_STATUS VARCHAR(20));
+
+CREATE TABLE ORDER_INFO (
+    O_ID INT(20) AUTO_INCREMENT PRIMARY KEY,
+    DELIVERY_NUM VARCHAR(100),
+    EMAIL VARCHAR(50),
+    PNUM VARCHAR(30),
+    USER_ADDR VARCHAR(1000),
+    STORE_NAME VARCHAR(50),
+    BUSINESS_NUM VARCHAR(40),
+    TOTAL_PRICE VARCHAR(25),
+    EAT_TYPE VARCHAR(20),
+    ONCE_PLASTIC VARCHAR(15),
+    TO_OWNER VARCHAR(1000),
+    TO_RIDER VARCHAR(1000),
+    MENUS VARCHAR(4000),
+    TIME VARCHAR(30),
+    ACCEPT VARCHAR(20),
+    TIME_TAKEN VARCHAR(20),
+    DELIVERY_STATUS VARCHAR(20),
+    RIDER_INFO VARCHAR(100),
+    RIDER_STATUS VARCHAR(20),
+    ORDER_RESULT VARCHAR(20),
+    FOREIGN KEY (EMAIL) REFERENCES USER_INFO(EMAIL)
+);
+ACCEPT 승/거
+RIDER_STATUS 대기 - 배달 중 - 배달 완료
+DELIVERY_STATUS  대기 - 확인 - 배달 - 완료
+ORDER_RESULT 대기 - 조리 중 - 배송 중 - 완료
+DROP TABLE ORDER_INFO;
+
+- REVIEW_INFO
+CREATE TABLE REVIEW_INFO(
+REVIEW_ID INT(20) AUTO_INCREMENT PRIMARY KEY,
+STORE_NAME VARCHAR(255),
+USER_NAME VARCHAR(50),
+COMMENT VARCHAR(1000),
+MENU_NAME VARCHAR(255),
+STAR_RANK VARCHAR(20),
+IMG_PATH VARCHAR(200),
+TIME VARCHAR(100)
+);
+
+INSERT INTO REVIEW_INFO (STORE_NAME, USER_NAME, COMMENT, MENU_NAME, STAR_RANK, TIME)
+VALUES
+('교촌치킨', '전**', '맛나요 배달하신분 친절', '반반콤보', '5',  '2025-06-14'),
+('교촌치킨','오**', '맛있는데..교촌 요즘 피가 덜빠진 닭으로 조리하죠...?이거..본사에 말슴드려서 개선해야할것같아요..', '반반콤보', '5', '2025-06-12'),
+('교촌치킨', '박**', '굿', '레드콤보', '4.9', '2025-06-15'),
+('교촌치킨', '김**', '아빠 주문해 드렸는데 맛있게 잘 드셨다고 연락 오셨어요~감사합니다!!', '레드윙박스', '5', '2025-06-08'),
+('교촌치킨', '홍**', '맛있게 잘먹었습니다 수고하세요', '레드오리지날(한마리)', '5', '2025-06-16');
+
+INSERT INTO REVIEW_INFO (STORE_NAME, USER_NAME, COMMENT, MENU_NAME, STAR_RANK, IMG_PATH, TIME)
+VALUES
+('교촌치킨','남**', '맛있게 먹었습니다~', "허니순살", '5', './review/review_1.png', '2025-06-09'),
+('교촌치킨','송**', '슈퍼 초고속 배달입니다 ㄷㄷ 완전 뜨끈하고 맛나게 먹습니다', '레드오리지날(한마리)', '4.9', './review/review_2.png', '2025-06-03'),
+('교촌치킨','전**', '너무 맛있게 잘먹었습니다', '허니싱글윙','4.8', './review/review_3.PNG','2025-06-11'),
+('교촌치킨','강**', '아이가좋아해서 ㅎㅎ 허니콤보만 시켜요', '허니콤보', '4.8','./review/review_4.png', '2025-06-17'),
+('교촌치킨','김**', '잘먹었습니다ㅎㅎ', '살살후라이드', '4.8','./review/review_5.png', '2025-06-14');
+
+105000
+110000
+115000
+120000
+125000
+130000
+715000
+
+TRUNCATE TABLE 테이블명; - 테이블을 초기화 한 후 PK값을 1로 만드는 명령어
+ALTER TABLE 테이블명 AUTO_INCREMENT = 초기화할_숫자;

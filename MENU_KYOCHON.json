@@ -5984,7 +5984,7 @@
       "menu_category": "후라이드 시리즈",
       "menu_name": "후라이드양념반반순살",
       "menu_price": "23000",
-      "menu_img_path": "./KYOCHON_IMG/fried/banbansoonsal.png",
+      "menu_img_path": "./KYOCHON_IMG/fried/banban_soonsal.png",
       "menu_info": "바삭한 후라이드와 새콤달콤한 양념치킨을 동시에 즐길 수 있는 순살치킨",
       "menu_status": "ACTIVE",
       "opmenu_optionstions": [
@@ -6214,8 +6214,8 @@
       "menu_category": "허니 옥수수",
       "menu_name": "허니옥수수순살 국물맵떡세트",
       "menu_price": "27000",
-      "menu_img_path": "",
-      "menu_info": "",
+      "menu_img_path": "./KYOCHON_IMG/honeycorn/honey_dduk_set.png",
+      "menu_info": "허니옥수수 순살(안심, 정육)과 국물맵떡S의 찰떡궁합 세트메뉴",
       "menu_status": "ACTIVE",
       "menu_options": [
         {
@@ -6444,8 +6444,8 @@
       "menu_category": "허니 옥수수",
       "menu_name": "허니옥수수 한마리 국물맵떡세트",
       "menu_price": "24000",
-      "menu_img_path": "",
-      "menu_info": "",
+      "menu_img_path": "./KYOCHON_IMG/honeycorn/honey_one_dduk_set.png",
+      "menu_info": "허니옥수수 한마리와 국물맵떡S의 찰떡궁합 세트메뉴",
       "menu_status": "ACTIVE",
       "menu_options": [
         {
@@ -6674,8 +6674,8 @@
       "menu_category": "허니 옥수수",
       "menu_name": "허니옥수수순살 디핑소스세트",
       "menu_price": "24000",
-      "menu_img_path": "",
-      "menu_info": "",
+      "menu_img_path": "./KYOCHON_IMG/honeycorn/honey_diping.png",
+      "menu_info": "허니옥수수 순살(안심, 정육)과 레드디핑소스, 하바네로마요소스의 만남",
       "menu_status": "ACTIVE",
       "menu_options": [
         {
@@ -6904,8 +6904,8 @@
       "menu_category": "허니 옥수수",
       "menu_name": "허니옥수수 한마리 디핑소스세트",
       "menu_price": "21000",
-      "menu_img_path": "",
-      "menu_info": "",
+      "menu_img_path": "./KYOCHON_IMG/honeycorn/honey_one_diping.png",
+      "menu_info": "허니옥수수 한마리와 레드디핑소스, 하바네로마요소스의 만남",
       "menu_status": "ACTIVE",
       "menu_options": [
         {
@@ -9894,7 +9894,7 @@
       "menu_category": "주류",
       "menu_name": "소주(참이슬후레쉬) 360ml",
       "menu_price": "4000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/drink/real_dew.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -9902,7 +9902,7 @@
       "menu_category": "주류",
       "menu_name": "소주(진로이즈백) 360ml",
       "menu_price": "4000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/drink/jinro.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -9910,7 +9910,7 @@
       "menu_category": "주류",
       "menu_name": "소주(잎새주) 360ml",
       "menu_price": "4000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/drink/leaf.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -9918,7 +9918,7 @@
       "menu_category": "주류",
       "menu_name": "생맥주 1000cc",
       "menu_price": "8000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/drink/live_beer.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -9926,7 +9926,7 @@
       "menu_category": "주류",
       "menu_name": "병맥주(카스) 500ml",
       "menu_price": "4000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/drink/cass.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -9942,7 +9942,7 @@
       "menu_category": "사이드메뉴",
       "menu_name": "New 교촌X노티드 츄러스(5ea)",
       "menu_price": "6000",
-      "menu_img_path": "./KYOCHON_IMG/side/kyo_no_chu.png",
+      "menu_img_path": "./KYOCHON_IMG/side/kyo_no_chu_5.png",
       "menu_info": "치즈 풍미 가득한 화이트크림소스와 시나몬슈가 츄러스의 기분 좋은 만남 [화이트크림소스 제공]",
       "menu_status": "ACTIVE"
     },
@@ -10054,7 +10054,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "양념치킨디핑소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/yangneum.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10062,7 +10062,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "New 화이트크림소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/white_cream.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10070,15 +10070,15 @@
       "menu_category": "소스 및 무",
       "menu_name": "트리플레드소스",
       "menu_price": "500",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/triple_red.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
     {
       "menu_category": "소스 및 무",
-      "menu_name": "K1김치트러플핫소스",
-      "menu_price": "500",
-      "menu_img_path": "",
+      "menu_name": "NEW 화이트크림소스",
+      "menu_price": "1000",
+      "menu_img_path": "./KYOCHON_IMG/sauce/white_cream.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10086,7 +10086,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "허니케찹소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/ketchup.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10094,7 +10094,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "치즈트러플시즈닝",
       "menu_price": "2000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/cheese.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10102,7 +10102,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "레드디핑소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/red_dip.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10110,7 +10110,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "잠발라야소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/jambal.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10118,7 +10118,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "허니머스타드소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/honey_mus.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },
@@ -10126,7 +10126,7 @@
       "menu_category": "소스 및 무",
       "menu_name": "하바네로마요소스",
       "menu_price": "1000",
-      "menu_img_path": "",
+      "menu_img_path": "./KYOCHON_IMG/sauce/havanero.png",
       "menu_info": "",
       "menu_status": "ACTIVE"
     },

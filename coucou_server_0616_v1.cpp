@@ -12,6 +12,10 @@
 #include <fstream>
 #include <map>
 #include <arpa/inet.h>
+#include <random>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
 
 
 
@@ -23,7 +27,12 @@ void createEmptyJsonFile_new(const std::string& name, const std::string& path, b
 void appendMenuItemLatestFirst(const std::string& name, const std::string& path, const json& newItem);
 string getCurrentTimeString();
 string category_name(int category);
-bool send_message_to_ip(const std::string& ip, const std::string& message);
+int get_socket_for_ip(const std::string& ip);
+string generate_random_code(int length);
+string getCurrentTimestamp();
+string getCurrentDateOnly();
+string get_first_utf8_char(const std::string& str);
+
 
 // 출력 시 동시 접근 방지를 위한 전역 뮤텍스
 std::mutex cout_mutex;
@@ -41,7 +50,7 @@ struct socket_info {
 };
 
 // 서버가 리슨할 포트 정의
-constexpr int PORT = 20010;
+constexpr int PORT = 10007;
 
 
 // 클라이언트에 JSON 응답 전송 함수
@@ -71,7 +80,7 @@ void handle_json_message(const std::string& message, int client_sock) {
     try {
         auto j = json::parse(message);
         if (!j.contains("signal")) {
-            send_json(client_sock, { {"status", "error"}, {"message", "'signal' field missing"} });
+            send_json(client_sock, { {"status", "error"}, {"message", "'signal' field missing"}});
             return;
         }
         
@@ -81,7 +90,6 @@ void handle_json_message(const std::string& message, int client_sock) {
         // s_info.socket.append(to_string(client_sock));
 
         std::string signal = j["signal"];
-        cout << "signal:" << j<< endl;
         MYSQL* conn = connect_db();
         if (!conn) return;
 
@@ -101,7 +109,8 @@ void handle_json_message(const std::string& message, int client_sock) {
             // }
 
         } 
-        else if (signal == "search") {
+        else if (signal == "search")    // 로그인 시 가게 정보 전송
+        {
             std::string query = "SELECT * FROM STORE";
             string ca_name;
 
@@ -179,7 +188,8 @@ void handle_json_message(const std::string& message, int client_sock) {
                 send_json(client_sock, { {"status", "error"}, {"message", mysql_error(conn)} });
             }
         }
-        else if (signal == "update") {
+        else if (signal == "update")    // 회원 정보 수정
+        {
             int id = j["id"];
             std::string name = j["name"];
             int age = j["age"];
@@ -191,7 +201,8 @@ void handle_json_message(const std::string& message, int client_sock) {
             }
 
         }
-        else if (signal == "delete") {
+        else if (signal == "delete")    // 삭제
+        {
             int id = j["id"];
             std::string query = "DELETE FROM users WHERE id=" + to_string(id);
             if (mysql_query(conn, query.c_str()) == 0) {
@@ -201,7 +212,7 @@ void handle_json_message(const std::string& message, int client_sock) {
             }
 
         }
-        else if (signal == "sign_up_result")
+        else if (signal == "sign_up_result")    // 회원가입 결과
         {
             string role = j["role"];
             string p_num = j["pnum"];
@@ -310,7 +321,7 @@ void handle_json_message(const std::string& message, int client_sock) {
             // }
             
         }
-        else if (signal == "sign_up")
+        else if (signal == "sign_up")   // 회원 가입
         {  
             string role = j["role"];
             if (role == "user")
@@ -391,7 +402,7 @@ void handle_json_message(const std::string& message, int client_sock) {
 
                     // 결과 없음 또는 비어있는 경우
                     if (!result || mysql_num_rows(result) == 0) {
-                        send_json(client_sock, {{"signal", "login"}, {"result", "fail"}});
+                        send_json(client_sock, {{"signal", "login_result"}, {"result", "fail"}});
                         if (result) mysql_free_result(result);
                         return;
                     }
@@ -399,7 +410,7 @@ void handle_json_message(const std::string& message, int client_sock) {
                     MYSQL_ROW row = mysql_fetch_row(result);
 
                     // 로그인 성공 → 사용자 정보 추출
-                    string user_id = row[0] ? row[0] : "";
+                    // string user_id = row[0] ? row[0] : "";
                     string u_email = row[1] ? row[1] : "";
                     string name    = row[3] ? row[3] : "";
                     string pnum    = row[4] ? row[4] : "";
@@ -416,42 +427,52 @@ void handle_json_message(const std::string& message, int client_sock) {
                     if (mysql_query(conn, cart_query.c_str()) == 0) {
                         MYSQL_RES* cart_result = mysql_store_result(conn);
                         MYSQL_ROW cart_row;
-
+                        int cart_id = 0;
+                        json cart_detail = json::array();
                         while ((cart_row = mysql_fetch_row(cart_result)) != nullptr) {
-                            int cart_id = 0;
-                            try {
-                                cart_id = cart_row[0] ? std::stoi(cart_row[0]) : 0;
-                            } catch (const std::exception& e) {
-                                cart_id = 0;
-                            }
-
-                            json cart_item = {
-                                {"CART_ID", cart_id},
-                                {"USER_EMAIL", cart_row[1] ? cart_row[1] : ""},
-                                {"STORE_NAME", cart_row[2] ? cart_row[2] : ""},
-                                {"TOTAL_PRICE", cart_row[3] ? cart_row[3] : ""},
-                                {"STATUS", cart_row[4] ? cart_row[4] : ""},
-                                {"CD_ID", cart_row[5] ? cart_row[5] : ""},
+                            
+                            // try {
+                            //     cart_id = cart_row[0] ? std::stoi(cart_row[0]) : 0;
+                            // } catch (const std::exception& e) {
+                            //     cart_id = 0;
+                            // }
+                            cart_detail.push_back({
                                 {"MENU", cart_row[6] ? cart_row[6] : ""},
                                 {"OPTION", cart_row[7] ? cart_row[7] : ""},
                                 {"PRICE", cart_row[8] ? cart_row[8] : ""},
                                 {"QUANTITY", cart_row[9] ? cart_row[9] : ""}
-                            };
-
-                            user_cart.push_back(cart_item);
+                            });
                         }
-
-                        mysql_free_result(cart_result);
+                        
+                        string carts_query = "SELECT * FROM CARTS WHERE USER_EMAIL = '"+u_email+"'";
+                        if (mysql_query(conn, carts_query.c_str()) == 0) {
+                            MYSQL_RES* carts_result = mysql_store_result(conn);
+                            if (carts_result) {
+                                MYSQL_ROW carts_row = mysql_fetch_row(carts_result);
+                                if (carts_row) {
+                                    json cart_item = {
+                                        {"store_name", carts_row[2] ? carts_row[2] : ""},
+                                        {"total_price", carts_row[3] ? carts_row[3] : ""},
+                                        {"eat_type", carts_row[4] ? carts_row[4] : ""},
+                                        {"cart_items", cart_detail}                               
+                                    };
+                                    user_cart.push_back(cart_item);
+                                } else {
+                                    std::cerr << "[WARN] No cart data found for user: " << u_email << std::endl;
+                                }
+                                mysql_free_result(carts_result);  // 올바르게 해제
+                            } else {
+                                std::cerr << "[ERROR] mysql_store_result failed: " << mysql_error(conn) << std::endl;
+                            }
+                        }
                     } else {
                         std::cerr << "장바구니 쿼리 실패: " << mysql_error(conn) << std::endl;
                     }
 
-                    // 3. 응답 생성 (조건부 cart 포함)
                     json response = {
                         {"signal", "login"},
                         {"result", "success"},
-                        {"user_id", user_id},
-                        {"u_email", u_email},
+                        {"email", u_email},
                         {"name", name},
                         {"pnum", pnum}
                     };
@@ -466,72 +487,72 @@ void handle_json_message(const std::string& message, int client_sock) {
                     if (mysql_query(conn, add_query.c_str())==0)
                     {
                         MYSQL_RES* result = mysql_store_result(conn);
-                        MYSQL_ROW row = mysql_fetch_row(result);
+                        MYSQL_ROW row;
                         json addr = json::array();
-                     
-                        if (row != nullptr)
-                        {
-                            while ((row = mysql_fetch_row(result))) {
-                                addr.push_back({
-                                    {"email", row[1] ? row[1] : ""},
-                                    {"basic_addr", row[2] ? row[2] : ""},
-                                    {"detail_addr", row[3] ? row[3] : ""},
-                                    {"direction", row[4] ? row[4] : ""},
-                                    {"is_primary", row[5] ? row[5] : ""}
-                                });
+                        while ((row = mysql_fetch_row(result))) {
+                            addr.push_back({
+                                {"addr_id", row[0] ? to_string(std::stoi(row[0])) : ""},
+                                {"email", row[1] ? row[1] : ""},
+                                {"basic_addr", row[2] ? row[2] : ""},
+                                {"detail_addr", row[3] ? row[3] : ""},
+                                {"direction", row[4] ? row[4] : ""},
+                                {"is_primary", row[5] ? row[5] : ""},
+                                {"type", row[6] ? row[6] : ""}
+                            });
+                            if (row == nullptr)
+                            {
+                                response["user_add"] = "no";
                             }
-                            mysql_free_result(result);
-                            response["user_add"] = addr;
                         }
-                        else if (row == nullptr)
-                        {
-                            response["user_add"] = "주소를 입력해주세요.";
-                        }
+
+                        mysql_free_result(result);
+                        response["user_add"] = addr;
+                        
                     }
                     // 5. 검색어 정보
-                    string result_query = "SELECT * FROM KEYWORD WHERE USER_ID= '"+email+"'";
+                    // string result_query = "SELECT * FROM KEYWORD WHERE USER_ID= '"+email+"'";
 
-                    if (mysql_query(conn, result_query.c_str()) == 0) {
-                        MYSQL_RES* result = mysql_store_result(conn);
-                        MYSQL_ROW row;
-                        json keyword = json::array();
+                    // if (mysql_query(conn, result_query.c_str()) == 0) {
+                    //     MYSQL_RES* result = mysql_store_result(conn);
+                    //     MYSQL_ROW row;
+                    //     json keyword = json::array();
 
-                        while ((row = mysql_fetch_row(result))) {
-                            const char* user_keyword = row[2];  // 파일 이름 저장된 컬럼
-                            std::string filename = user_keyword ? user_keyword : "";
+                    //     while ((row = mysql_fetch_row(result))) {
+                    //         const char* user_keyword = row[2];  // 파일 이름 저장된 컬럼
+                    //         std::string filename = user_keyword ? user_keyword : "";
 
-                            json k;
-                            if (!filename.empty()) {
-                                std::ifstream input_file(filename);
-                                try {
-                                    input_file >> k;  // 파일 내용을 JSON으로 파싱
-                                    input_file.close();
-                                } catch (const json::parse_error& e) {
-                                    std::cerr << "JSON parse error: " << e.what() << std::endl;
-                                    return;
-                                }
+                    //         json k;
+                    //         if (!filename.empty()) {
+                    //             std::ifstream input_file(filename);
+                    //             try {
+                    //                 input_file >> k;  // 파일 내용을 JSON으로 파싱
+                    //                 input_file.close();
+                    //             } catch (const json::parse_error& e) {
+                    //                 std::cerr << "JSON parse error: " << e.what() << std::endl;
+                    //                 return;
+                    //             }
                                 
-                            }
-                            else
-                            {
-                                keyword = {};
-                                break;
-                            }
-                            keyword.push_back({"keyword", k});
-                        }
-                        mysql_free_result(result);
-                        response["keyword"] = keyword;
-                    }
+                    //         }
+                    //         else
+                    //         {
+                    //             keyword = {};
+                    //             break;
+                    //         }
+                    //         keyword.push_back({"keyword", k});
+                    //     }
+                    //     mysql_free_result(result);
+                    //     response["keyword"] = keyword;
+                    // }
                     // 6. 리뷰 정보
 
                     // 7. 주문 내역
 
                     // 8. 즐겨 찾기
 
-                    send_json(client_sock, response);
+                    send_json(client_sock, {{"signal", "login_result"}, {"result", "success"},{"user_info",response}});
                 }
                 else {
-                    send_json(client_sock, {{"signal", "login"}, {"result", "query fail"}});
+                    // send_json(client_sock, {{"signal", "login_result"}, {"result", "query fail"}});
                 }
             }
 
@@ -540,6 +561,7 @@ void handle_json_message(const std::string& message, int client_sock) {
                 cout << "store : " << j << endl;
                 string store_id = j["id"];
                 string pw = j["pw"];
+                string business_num = j["biz_num"];
                 string login_query = "SELECT * FROM OWNER_INFO WHERE BUSINESS_ID = '" + store_id + "' AND PW = '" + pw + "'";
 
                 if (mysql_query(conn, login_query.c_str()) == 0)
@@ -647,11 +669,51 @@ void handle_json_message(const std::string& message, int client_sock) {
 
                         mysql_free_result(result);
 
-                        send_json(client_sock, {
-                            {"signal", "response_store_login"},
-                            {"store_login_result", "success"},
-                            {"store_info", store}
-                        });
+                        // ORDER_INFO 테이블에서 해당 가게 정보 조회
+                        string order_query = "SELECT * FROM ORDER_INFO WHERE BUSINESS_NUM = '"+business_num+"'";
+                        json order_info = json::array();
+                        if (mysql_query(conn, order_query.c_str())==0)
+                        {
+                            MYSQL_RES* order_result = mysql_store_result(conn);
+                            MYSQL_ROW row;
+                            while ((row=mysql_fetch_row(order_result)))
+                            {
+                                order_info.push_back({
+                                    {"order_serialNumber", row[1] ? row[1] : ""},
+                                    {"order_time", row[13] ? row[13] : ""},
+                                    {"to_owner", row[10] ? row[10] : ""},
+                                    {"to_rider", row[11] ? row[11] : ""},
+                                    {"once_plastic", row[9] ? row[9] : ""},
+                                    {"user_pnum", row[3] ? row[3] : ""},
+                                    {"user_addr", row[4] ? row[4] : ""},
+                                    {"order_status", row[16] ? row[16] : ""},
+                                    {"store_name", row[5] ? row[5] : ""},
+                                    {"total_price", row[7] ? row[7] : ""},
+                                    {"eat_type", row[8] ? row[8] : ""},
+                                    {"order_items", row[12] ? row[12] : ""}
+                                });
+                            }
+                            mysql_free_result(order_result);
+                        }
+
+                        if(order_info != nullptr)
+                        {
+                            send_json(client_sock, {
+                                {"signal", "response_store_login"},
+                                {"store_login_result", "success"},
+                                {"store_info", store},
+                                {"order_info", order_info}
+                            });
+                        }
+                        else
+                        {
+                            send_json(client_sock, {
+                                {"signal", "response_store_login"},
+                                {"store_login_result", "success"},
+                                {"store_info", store}
+                            });
+                        }
+                        
                     }
                     else {
                         send_json(client_sock, {
@@ -668,9 +730,33 @@ void handle_json_message(const std::string& message, int client_sock) {
                         {"message", mysql_error(conn)}
                     });
                 }
-            }   
+            }
+            else if (role == "rider")
+            {
+                string pnum = j["pnum"];
+                string pw = j["pw"];
+                json user_cart = json::array();
+
+                // 1. 로그인 확인
+                string rider_login_query = "SELECT * FROM RIDER_INFO WHERE PNUM = '" + pnum + "' AND PW = '" + pw + "'";
+
+                if (mysql_query(conn, rider_login_query.c_str()) == 0) {
+                    MYSQL_RES* result = mysql_store_result(conn);
+
+                    // 결과 없음 또는 비어있는 경우
+                    if (!result || mysql_num_rows(result) == 0) {
+                        send_json(client_sock, {{"signal", "login_result"}, {"result", "fail"}});
+                        if (result) mysql_free_result(result);
+                        return;
+                    }
+
+                    mysql_free_result(result);  // 사용자 쿼리 결과 해제
+                    send_json(client_sock, {{"signal", "login_result"}, {"result", "success"}});
+                }
+            }
+               
         }
-        else if (signal == "find_id")
+        else if (signal == "find_id")   // User ID 찾기
         {
             string role = j["role"];
             string name = j["name"];
@@ -723,7 +809,7 @@ void handle_json_message(const std::string& message, int client_sock) {
                 }
             }
         }
-        else if (signal == "find_pw")
+        else if (signal == "find_pw")   // User PW 찾기
         {
             string role = j["role"];
             string name = j["name"];
@@ -778,7 +864,7 @@ void handle_json_message(const std::string& message, int client_sock) {
                 }
             }
         }
-        else if (signal == "update_cart")
+        else if (signal == "update_cart")   // 장바구니 추가
         {
             string role = j["role"];
             if (role == "user")
@@ -796,7 +882,7 @@ void handle_json_message(const std::string& message, int client_sock) {
             }
             
         }
-        else if (signal == "get_my_info")
+        else if (signal == "get_my_info")   // User 정보 확인
         {
             string role = j["role"];
             string email = j["e_mail"];
@@ -853,7 +939,7 @@ void handle_json_message(const std::string& message, int client_sock) {
                 }
             
         }
-        else if (signal == "register_favorite")
+        else if (signal == "register_favorite") // 즐겨찾기 추가
         {
             string role = j["role"];
 
@@ -1006,22 +1092,29 @@ void handle_json_message(const std::string& message, int client_sock) {
             {
                 cout << "ERROR!" << endl;
             }
+            string carts = "SELECT * FROM CARTS WHERE USER_EMAIL = '"+user_id+"'";
+            json cart_info;
+            if (mysql_query(conn, carts.c_str())==0)
+            {
+                MYSQL_RES* result = mysql_store_result(conn);
+                MYSQL_ROW row = mysql_fetch_row(result);
+
+                cart_info.push_back({
+                    {"store_name", row[2] ? row[2] : ""},
+                    {"total_price", row[3] ? row[3] : ""},
+                    {"eat_type", row[4] ? row[4] : ""}, 
+                });
+                mysql_free_result(result);
+            }
 
             string view_cart = "SELECT c.STORE_NAME, c.TOTAL_PRICE,c.STATUS, d.MENU,d.OPTION,d.PRICE,d.QUANTITY FROM CARTS c JOIN CART_DETAILS d ON c.CART_ID = d.CART_ID WHERE c.USER_EMAIL = '"+user_id+"'";
             if (mysql_query(conn, view_cart.c_str()) == 0) {
                 MYSQL_RES* result = mysql_store_result(conn);
                 MYSQL_ROW row;
-                json cart_info;
+                
                 json cart_de;
                 map<json, json> carts_all;
                 while ((row = mysql_fetch_row(result))){
-
-                    cart_info.push_back({
-                        {"store_name", row[0] ? row[0] : ""},
-                        {"total_price", row[1] ? row[1] : ""},
-                        {"status", row[2] ? row[2] : ""},
-                        
-                    });
 
                     cart_de.push_back({
                         {"menu", row[3] ? row[3] : ""},
@@ -1040,76 +1133,476 @@ void handle_json_message(const std::string& message, int client_sock) {
                  send_json(client_sock, {{"signal", "cart_data"}, {"message", "error"} });
             }
             
+            string find_cart_id = "SELECT CART_ID FROM CARTS WHERE USER_EMAIL = '"+user_id+"'";
+            string cart_id;
+            if (mysql_query(conn, find_cart_id.c_str()) == 0) {
+                MYSQL_RES* result = mysql_store_result(conn);
+                if (result) {
+                    MYSQL_ROW row = mysql_fetch_row(result);
+                    if (row && row[0]) {
+                        cart_id = row[0];  // CART_ID가 문자열로 저장됨
+                    } else {
+                        std::cerr << "[WARN] No cart_id found for user: " << user_id << std::endl;
+                    }
+                    mysql_free_result(result);
+                } else {
+                    std::cerr << "[ERROR] mysql_store_result failed: " << mysql_error(conn) << std::endl;
+                }
+            } else {
+                std::cerr << "[ERROR] mysql_query failed: " << mysql_error(conn) << std::endl;
+            }
+            string del_detail = "TRUNCATE TABLE CART_DETAILS";
+            if (mysql_query(conn, del_detail.c_str())==0)
+            {
+                cout << "CART_DETAIL DELETE" << endl;
+            }
+            
+            string delete_cart_query = "DELETE FROM CARTS WHERE CART_ID = '"+cart_id+"'";
+            if (mysql_query(conn, delete_cart_query.c_str())==0)
+            {
+                string pk_rest = "ALTER TABLE CARTS AUTO_INCREMENT = 1";
+                if (mysql_query(conn, pk_rest.c_str())==0)
+                {
+                    cout << "CARTS PK RESET" << endl;
+                }
+            }
+            
         }    
         else if (signal == "to_pay") // 장바구니 주문 결제
-        { 
+        {
+            string role = j["role"];
+            string email =  j["email"];
+            string pnum = j["user_pnum"];
+            string delivery_num = generate_random_code(6);
+            json user_addrs= j["user_addr"];
+            string user_addr = user_addrs.dump();
+            string store_name = j["store_name"];
+            string business_num = j["business_num"];
+            string total_price = j["total_price"];
+            string eat_type = j["eat_type"];
+            string to_owner = j["to_owner"];
+            string once_plastic = j["once_plastic"];
+            string to_rider = j["to_rider"];
+            string time = getCurrentTimestamp();
+            string accept = "확인 중";
+            string time_taken = "0";
+            string deliver_status = "대기";
+            string rider_status = "대기";
+            string order_result = "대기";
+            // json menu = j["menu"];
+            string menus = j["menus"].dump();
+
+            if (role != "user")
+            {
+                cout<< "잘못 된 접근 입니다!!!!" << endl;
+                return;
+            }
+
+            string query = "INSERT INTO ORDER_INFO(DELIVERY_NUM,EMAIL,PNUM,USER_ADDR,STORE_NAME,BUSINESS_NUM,TOTAL_PRICE,EAT_TYPE,ONCE_PLASTIC,"
+            "TO_OWNER,TO_RIDER,MENUS,TIME,ACCEPT, TIME_TAKEN,DELIVERY_STATUS, RIDER_STATUS,ORDER_RESULT)" 
+            "VALUES('"+delivery_num+"','"+email+"','"+pnum+"','"+user_addr+"','"+store_name+"','"+business_num+"',"
+            "'"+total_price+"','"+eat_type+"','"+once_plastic+"','"+to_owner+"','"+to_rider+"',"
+            "'"+menus+"','"+time+"','"+accept+"','"+time_taken+"','"+deliver_status+"','"+rider_status+"','"+order_result+"')";
+
+            if (mysql_query(conn, query.c_str())==0)
+            {
+                cout << "정상 작동" << endl;
+            }
+
+            json client_order;
+
+            client_order={
+                {"order_serialNumber", delivery_num},
+                {"order_time", time},
+                {"to_owner", to_owner},
+                {"to_rider", to_rider},
+                {"once_plastic", once_plastic},
+                {"user_pnum", pnum},
+                {"user_addr", user_addr},
+                {"order_status", deliver_status},
+                {"store_name", store_name},
+                {"total_price", total_price},
+                {"eat_type", eat_type},
+                {"order_items", j["menus"]}
+            };
+
+            
+            int socket_fd = get_socket_for_ip("10.10.20.116");
+            if (socket_fd != -1) {
+                send_json(socket_fd, {{"signal", "order_accept"}, {"role", "server"}, {"orders", client_order}});
+            }
+            client_order.clear();
+           
+            
         }
+        else if (signal == "res_order_accept")  // STORE 주문 승낙/거절
+        {
+            cout << "here1:" << j << endl;
+            string role = j["role"];
+            cout << "here2:" << j << endl;
+            if (role != "store")
+            {
+                return;
+            }
+            cout << "here:" << j << endl;
+            string delivery_num = j["order_serialNumber"];
+            string store_name = j["store_name"];
+            string accept = j["accept"];
+            // string delivery_status = "주문 완료";
+            string time_taken = j["time_take"];
+            if (accept == "yes")
+            {
+                cout << "here" << endl;
+        
+                string yes_query = "UPDATE ORDER_INFO SET DELIVERY_STATUS = '주문 수락', ACCEPT = '승인', TIME_TAKEN = '"+time_taken+"',"
+                "ORDER_RESULT = '진행' WHERE STORE_NAME = '"+store_name+"' AND DELIVERY_NUM = '"+delivery_num+"'";
+
+                mysql_query(conn, yes_query.c_str());
+                int client_so = get_socket_for_ip("10.10.20.118");
+                cout << client_so <<endl;
+                send_json(client_so, {{"signal", "order_pass"}, {"result", "yes"},{"order_num", delivery_num},{"cooking_time", time_taken}});
+            }
+            else if (accept == "no")
+            {
+                string delivery_status = "주문 거절";
+                string time_taken = "0";
+        
+                string no_query = "UPDATE ORDER_INFO SET DELIVERY_STATUS = '주문 거절', ACCEPT = '거절', TIME_TAKEN = '"+time_taken+"',"
+                "ORDER_RESULT = '거절' WHERE STORE_NAME = '"+store_name+"' AND DELIVERY_NUM = '"+delivery_num+"'";
+
+                mysql_query(conn, no_query.c_str());
+                int client_so = get_socket_for_ip("10.10.20.118");
+                send_json(client_so, {{"signal", "order_pass"}, {"result", "no"}, {"order_num", delivery_num}});
+            }
+        }
+        else if (signal == "req_rider_info")    // 조리 완료 시 라이더에게 신호 쀵
+        {
+            string role = j["role"];
+            if (role != "store")
+            {
+                return;
+            }
+            cout << "here!" << endl;
+            string store_name = j["store_name"];
+            string delivery_num = j["order_serialNumber"];
+            cout << "here:" << store_name << endl;
+            cout << "here:" << delivery_num << endl;
+            string query = "UPDATE ORDER_INFO SET ORDER_RESULT = '조리 완료' WHERE STORE_NAME = '"+store_name+"' AND DELIVERY_NUM = '"+delivery_num+"'";
+
+            if (mysql_query(conn, query.c_str())==0)
+            {
+                cout << "조리 완료" << endl;
+                int rider_so = get_socket_for_ip("10.10.20.110");
+                
+                send_json(rider_so, {{"signal", "yoo_rider"}, {"result","yes_or_no"}, {"store_name", store_name}, {"delivery_num", delivery_num}});
+            }
+
+            // string delivery_query = "SELECT * FROM ORDER_INFO WHERE STORE_NAME = '"+store_name+"' AND DELIVERY_NUM = '"+delivery_num+"'";
+            // json delivery;
+            // if (mysql_query(conn, delivery_query.c_str())==0)
+            // {
+            //     MYSQL_RES* delivery_result = mysql_store_result(conn);
+            //     MYSQL_ROW row = mysql_fetch_row(delivery_result);
+
+            //     delivery = {
+            //         {"store_name", row[5] ? row[5] : ""},
+            //         {"delivery_num", row[1] ? row[1] : ""}
+            //     };
+            // }
+            // json delivery;
+            // delivery = {
+            //     {"store_name", store_name},
+            //     {"delivery_num", delivery_num}
+            // };
+ 
+        }
+        else if (signal == "yoo_rider_yes") // 라이더가 승인 했을 때
+        {
+            string order_num = j["order_num"];
+            string rider_pnum = j["rider_pnum"];
+            string rider_name = j["rider_name"];
+            // string order_num = j["order_num"];
+
+            int store_ip = get_socket_for_ip("10.10.20.116");
+            send_json(store_ip, {{"signal", "res_rider_info"}, {"name", rider_name}, {"p_num", rider_pnum}, {"order_num", order_num}});
+
+            cout << "여기요!" <<endl;
+            cout << "팀장님! :" <<order_num;
+            string rider_send_query = "SELECT * FROM ORDER_INFO WHERE DELIVERY_NUM = '"+order_num+"'";
+
+            json rider_send;
+            if (mysql_query(conn, rider_send_query.c_str())==0)
+            {
+                MYSQL_RES* ride_send_result = mysql_store_result(conn);
+                MYSQL_ROW row = mysql_fetch_row(ride_send_result);
+
+                string s_addr_info;
+                string addr_info = row[5];  // row[5]에는 STORE_NAME이 들어 있다고 가정
+                cout << "가게 이름 : " << addr_info << endl;
+                string store_addr_info = "SELECT * FROM STORE WHERE STORE_NAME = '" + addr_info + "'";
+                if (mysql_query(conn, store_addr_info.c_str()) == 0) {
+                    MYSQL_RES* addr_result = mysql_store_result(conn);
+                    MYSQL_ROW store_row = mysql_fetch_row(addr_result);
+                    if (store_row && store_row[3]) {
+                        s_addr_info = store_row[3];  // STORE_ADDR 값
+                        cout << "매장 주소: " << s_addr_info << endl;
+                    } else {
+                        cout << "매장 주소를 찾을 수 없습니다." << endl;
+                    }
+                    mysql_free_result(addr_result);
+                }
+
+                rider_send = {
+                    {"store_name", row[5] ? row[5] : ""},
+                    {"store_addr", s_addr_info},
+                    {"order_num", order_num},
+                    {"to_rider", row[11] ? row[11] : ""},
+                    {"total_price", row[7] ? row[7] : ""},
+                    {"user_addr", row[4] ? row[4] : ""},
+                    {"user_pnum", row[3] ? row[3] : ""}
+                };
+                cout << "가게 정보: " << rider_send <<endl;
+                mysql_free_result(ride_send_result);
+                int rider_ip = get_socket_for_ip("10.10.20.110");
+                send_json(rider_ip, {{"signal", "ok_and_info"}, {"result", rider_send}});
+            }
+            
+            json rider = json::array();
+            rider = {{"name", rider_name}, {"p_num", rider_pnum}};
+            string status_update = "UPDATE ORDER_INFO SET RIDER_INFO = '"+rider.dump()+"', RIDER_STATUS = '수락' WHERE DELIVERY_NUM = '"+order_num+"'"; 
+            if (mysql_query(conn, status_update.c_str())==0)
+            {
+                cout << "Update complete" << endl;
+            }
+            
+        }
+        else if (signal == "pick_up")   // 라이더 PICK_UP START
+        {
+            string order_num = j["order_num"];
+            string pick_up_query = "UPDATE ORDER_INFO SET RIDER_STATUS = '배송 중', DELIVERY_STATUS = '배달 시작' WHERE DELIVERY_NUM = '"+order_num+"'";
+
+            if (mysql_query(conn, pick_up_query.c_str())==0)
+            {
+                cout << "STATUS CHANGE COMPLETE" << endl;
+            }
+            
+            int client_ip = get_socket_for_ip("10.10.20.118");
+            send_json(client_ip, {{"signal", "pick_up_start"}});
+        }
+        else if (signal == "delivery_end")  // 배송 완료 시그널
+        {
+            string order_num = j["order_num"];
+            string rider_pnum = j["pnum"];
+
+            int client_ip = get_socket_for_ip("10.10.20.118");
+            int store_ip = get_socket_for_ip("10.10.20.116");
+            int rider_ip = get_socket_for_ip("10.10.20.110");
+
+            send_json(client_ip, {{"signal", "delivery_end"}});
+            send_json(store_ip, {{"signal", "delivery_end"}, {"order_num", order_num}});
+            send_json(rider_ip, {{"signal", "delivery_end"}});
+
+            string ending_query = "UPDATE ORDER_INFO SET RIDER_STATUS = '배송 완료', DELIVERY_STATUS = '배달 완료', ORDER_RESULT = '완료' WHERE DELIVERY_NUM = '"+order_num+"'";
+
+            if (mysql_query(conn, ending_query.c_str())==0)
+            {
+                cout << "END STATUS CHANGE COMPLETE" << endl;
+            }
+            
+            // string rider_add_fee = "SELECT DELIVERY_FEE FROM RIDER_INFO WHERE PNUM = '"+rider_pnum+"'";
+            // string add_fee = "2500";
+            // string current_fee;
+
+            // // Step 1: 기존 배달비 가져오기
+            // string query = "SELECT DELIVERY_FEE FROM RIDER_INFO WHERE PNUM = '" + rider_pnum + "'";
+            // if (mysql_query(conn, query.c_str()) == 0) {
+            //     MYSQL_RES* res = mysql_store_result(conn);
+            //     MYSQL_ROW row = mysql_fetch_row(res);
+            //     string current_fee = (row[0]) ? row[0] : "0";
+            //     mysql_free_result(res);
+            // } else {
+            //     cerr << "조회 실패: " << mysql_error(conn) << endl;
+            //     return;
+            // }
+
+            // // Step 2: 문자열 → 정수 변환 후 더함
+            // int total = stoi(current_fee) + stoi(add_fee);
+            // string total_fee = to_string(total);
+
+            // // Step 3: 업데이트 쿼리
+            // string update_query = "UPDATE RIDER_INFO SET DELIVERY_FEE = '" + total_fee + "' WHERE PNUM = '" + rider_pnum + "'";
+            // if (mysql_query(conn, update_query.c_str()) == 0) {
+            //     cout << "배달비 누적 완료! 현재 총: " << total_fee << "원" << endl;
+            // } else {
+            //     cerr << "업데이트 실패: " << mysql_error(conn) << endl;
+            // }
+            
+            
+        }
+        
         else if (signal == "register_addr") // 주소 등록
         {
             string role = j["role"];
-            if (role == "user")
-            {
+            if (role == "user") {
                 cout << "user connect" << endl;
             }
+
             string email = j["email"];
             string basic_addr = j["basic"];
             string detail_addr = j["detail"];
             string direction = j["direction"];
+            string type = j["type"];
             string is_primary = j["is_primary"];
 
-            string query = "INSERT INTO USER_ADDR(EMAIL, BASIC_ADDR, DETAIL_ADDR, DIRECTION, IS_PRIMARY) VALUES('"+email+"','"+basic_addr+"','"+detail_addr+"','"+direction+"','"+is_primary+"')";
-            
-            if (mysql_query(conn, query.c_str())==0)
-            {
-                mysql_store_result(conn);
-                string add_query = "SELECT * FROM USER_ADDR WHERE EMAIL = '"+email+"'";
+            string query = "INSERT INTO USER_ADDR(EMAIL, BASIC_ADDR, DETAIL_ADDR, DIRECTION, IS_PRIMARY, TYPE) "
+                        "VALUES('" + email + "','" + basic_addr + "','" + detail_addr + "','" + direction + "','" + is_primary + "','" + type + "')";
 
-                if (mysql_query(conn, add_query.c_str())==0)
-                {
+            if (mysql_query(conn, query.c_str()) == 0) {
+                mysql_store_result(conn);  // INSERT 이후에 불필요하지만 유지한다면 ok
+
+                string add_query = "SELECT * FROM USER_ADDR WHERE EMAIL = '" + email + "'";
+
+                if (mysql_query(conn, add_query.c_str()) == 0) {
                     MYSQL_RES* result = mysql_store_result(conn);
-                    MYSQL_ROW row = mysql_fetch_row(result);
+                    MYSQL_ROW row;
                     json addr = json::array();
-                     
-                    if (row != nullptr)
-                    {
-                        while ((row = mysql_fetch_row(result))) {
-                            addr.push_back({
-                                {"email", row[1] ? row[1] : ""},
-                                {"basic_addr", row[2] ? row[2] : ""},
-                                {"detail_addr", row[3] ? row[3] : ""},
-                                {"direction", row[4] ? row[4] : ""},
-                                {"is_primary", row[5] ? row[5] : ""}
-                            });
-                        }
-                        mysql_free_result(result);
+
+                    // 모든 row 반복하며 JSON 배열에 추가
+                    while ((row = mysql_fetch_row(result))) {
+                        addr.push_back({
+                            {"addr_id", row[0] ? std::to_string(atoi(row[0])) : ""},
+                            {"email", row[1] ? row[1] : ""},
+                            {"basic_addr", row[2] ? row[2] : ""},
+                            {"detail_addr", row[3] ? row[3] : ""},
+                            {"direction", row[4] ? row[4] : ""},
+                            {"is_primary", row[5] ? row[5] : ""},
+                            {"type", row[6] ? row[6] : ""}
+                        });
                     }
-                    else if (row == nullptr)
-                    {
-                        
-                        send_json(client_sock, {{"signal", "get_addr_result"}, {"message", "We don't have an address."}});
-                    }
-                    
+
                     mysql_free_result(result);
-                    send_json(client_sock, { {"signal", "get_addr_result"}, {"user_addr", addr} });    
-                }
-                else {
-                    send_json(client_sock, { {"signal", "get_addr_result"}, {"message", mysql_error(conn)}});
+
+                    send_json(client_sock, {
+                        {"signal", "get_addr_result"},
+                        {"user_addr", addr}
+                    });
+                } else {
+                    send_json(client_sock, {
+                        {"signal", "get_addr_result"},
+                        {"message", mysql_error(conn)}
+                    });
                 }
             }
             
         }
-        else if (signal == "register_review") // 리뷰 등록
+        else if (signal == "update_addr")   // 주소지 업데이트
         {
             string role = j["role"];
+            if (role != "user"){
+                return;
+            }
+            string email = j["email"];
+            string detail_addr = j["detail"];
+            string direction = j["direction"];
+            string type = j["type"];
+            string is_primary = j["is_primary"];
+
+
+        }
+        else if (signal == "del_addr")  // 주소지 삭제
+        {
+            string role = j["role"];
+            if (role != "user")
+            {
+                return;
+            }
+            string addr_id = j["addr_id"];
+            string email = j["email"];
+            cout << "id:" << addr_id <<endl;
+            cout << "email:" << email <<endl;
+
+            string query = "DELETE FROM USER_ADDR WHERE ADDR_ID = '"+addr_id+"' AND EMAIL = '"+email+"'";
+
+            if (mysql_query(conn, query.c_str())==0)
+            {
+                cout << "삭제 완료" << endl;
+            }
+            else
+            {
+                cout << "실패!" << endl;
+            }
+
+        }
+        else if (signal == "get_reviews") // 리뷰 확인하기
+        {
+            string role = j["role"];
+            string store_name = j["store_name"];
+            cout << store_name << endl;
             if (role == "user")
             {
+                string review_query = "SELECT * FROM REVIEW_INFO WHERE STORE_NAME = '"+store_name+"'";
+
+                if (mysql_query(conn, review_query.c_str())==0)
+                {
+                    MYSQL_RES* result = mysql_store_result(conn);
+                    MYSQL_ROW review_row;
+                    json re_json = json::array();
+                    while ((review_row = mysql_fetch_row(result)) != nullptr)
+                    {
+                        re_json.push_back({
+                            {"user_name", review_row[2] ? review_row[2] : ""},
+                            {"comment", review_row[3] ? review_row[3] : ""},
+                            {"menu_name", review_row[4] ? review_row[4] : ""},
+                            {"star_rank", review_row[5] ? review_row[5] : ""},
+                            {"img_path", review_row[6] ? review_row[6] : ""},
+                            {"time", review_row[7] ? review_row[7] : ""} 
+                        });
+                    }
+                    
+                    mysql_free_result(result);
+                    send_json(client_sock, {{"signal", "send_reviews"}, {"reviews", re_json}});
+                    cout << "Review Send Success!" << endl;
+                }
+                else
+                {
+                    cout << "Review Send Fail!" << endl;
+                }
+                
+            }
+        }
+        else if (signal == "make_review")
+        {
+            string role = j["role"];
+            string store_name = j["store_name"];
+            string user_name = j["user_name"];
+            string comment = j["comment"];
+            string menu_name = j["menu_name"];
+            string star_rank = j["star_rank"];
+            string time = getCurrentDateOnly();
+            string first_name = get_first_utf8_char(user_name);
+            string full_name = first_name + "**";
+            cout << "날짜 등록" << time << endl;
+            if (role == "user")
+            {
+
+                string make_review_query = "INSERT INTO REVIEW_INFO(STORE_NAME, USER_NAME,COMMENT,MENU_NAME,STAR_RANK,TIME)"
+                "VALUES('"+store_name+"','"+full_name+"','"+comment+"','"+menu_name+"','"+star_rank+"','"+time+"')";
+                if (mysql_query(conn, make_review_query.c_str())==0)
+                {
+                    cout << "Review Success!" << endl;
+                }
+                else
+                {
+                    cout << "Review Fail" << endl;
+                }
                 
             }
             
         }
         
-        else {
-            send_json(client_sock, { {"status", "error"}, {"message", "Unknown signal"} });
+        else 
+        {
+            send_json(client_sock, {{"status", "error"},{"message", "Unknown signal"}});
         }
 
         mysql_close(conn);
@@ -1251,6 +1744,7 @@ void client_worker(int client_sock, std::string client_ip) {
     std::cout << "[INFO] Client disconnected: " << client_ip << std::endl;
 }
 
+// Server 함수
 void start_server() {
     int server_fd = socket(AF_INET, SOCK_STREAM, 0);
     sockaddr_in server_addr{};
@@ -1470,26 +1964,78 @@ string category_name(int category) {
 }
 
 // JSON 문자열 또는 일반 텍스트 메시지를 전송
-bool send_message_to_ip(const std::string& ip, const std::string& message) {
+int get_socket_for_ip(const std::string& ip) {
     std::lock_guard<std::mutex> lock(ip_map_mutex);
-
     auto it = ip_to_socket.find(ip);
-    if (it == ip_to_socket.end()) {
-        std::cerr << "[ERROR] IP " << ip << " not found in socket map.\n";
-        return false;
+    if (it != ip_to_socket.end()) {
+        std::cout << "[INFO] Socket for IP " << ip << " : " << it->second << std::endl;
+        return it->second;
+    } else {
+        std::cout << "[WARN] No socket found for IP " << ip << std::endl;
+        return -1; // 실패 시 -1 반환
+    }
+}
+
+// 랜덤한 난수 생성
+std::string generate_random_code(int length) 
+{
+    if (length < 3) throw std::invalid_argument("Length must be at least 3 to include 3 digits");
+
+    const std::string digits = "0123456789";
+    const std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> digit_dis(0, digits.size() - 1);
+    std::uniform_int_distribution<> letter_dis(0, letters.size() - 1);
+
+    std::string code;
+
+    // 1. 숫자 3개 삽입
+    for (int i = 0; i < 3; ++i) {
+        code += digits[digit_dis(gen)];
     }
 
-    int sock_fd = it->second;
-    std::string msg_with_newline = message + "\n";  // 클라이언트가 줄바꿈 단위로 메시지 처리하는 경우
-
-    ssize_t sent = send(sock_fd, msg_with_newline.c_str(), msg_with_newline.size(), 0);
-    if (sent < 0) {
-        std::cerr << "[ERROR] Failed to send message to " << ip << "\n";
-        return false;
+    // 2. 나머지 자릿수는 영문자로 채움
+    for (int i = 0; i < length - 3; ++i) {
+        code += letters[letter_dis(gen)];
     }
 
-    std::cout << "[INFO] Sent message to " << ip << ": " << message << "\n";
-    return true;
+    // 3. 전체를 랜덤하게 섞기
+    std::shuffle(code.begin(), code.end(), gen);
+
+    return code;
+}
+
+// 현재 시간 표현 함수
+string getCurrentTimestamp() {
+    std::time_t now = std::time(nullptr);
+    std::tm* local_time = std::localtime(&now);
+
+    std::ostringstream oss;
+    oss << std::put_time(local_time, "%Y-%m-%d %H:%M:%S");
+    return oss.str();
+}
+
+// 년-월-일 표시
+string getCurrentDateOnly() {
+    std::time_t now = std::time(nullptr);
+    std::tm* local_time = std::localtime(&now);
+
+    std::ostringstream oss;
+    oss << std::put_time(local_time, "%Y-%m-%d");  // 시간 제외
+    return oss.str();
+}
+
+// Review 등록 시, 성만 추출하는 함수
+string get_first_utf8_char(const std::string& str) {
+    if (str.empty()) return "";
+    unsigned char lead = static_cast<unsigned char>(str[0]);
+    size_t len = 1;
+    if ((lead & 0xF8) == 0xF0) len = 4;
+    else if ((lead & 0xF0) == 0xE0) len = 3;
+    else if ((lead & 0xE0) == 0xC0) len = 2;
+    return str.substr(0, len);
 }
 
 //////////////////////
