@@ -853,12 +853,12 @@ void handle_json_message(const std::string& message, int client_sock) {
                 if (row == nullptr)
                 {
                     createEmptyJsonFile_new(email, path, true);
-                    // appendMenuItemLatestFirst(email, path, key);
+                    // appendKeywordItemLatestFirst(email, path, key);
                     string filename = path + "/" + email + ".json";
                     string key_query = "INSERT INTO KEYWORD(USER_ID, KEYWORD_PATH) VALUES('"+email+"','"+filename+"')";
                     mysql_query(conn, key_query.c_str());
                 }else if (row != nullptr) {
-                    // appendMenuItemLatestFirst(email, path, key);
+                    appendKeywordItemLatestFirst(email, path, key);
                 }
 
                 std::string result_query = "SELECT * FROM KEYWORD WHERE USER_ID= '"+email+"'";
@@ -1372,7 +1372,7 @@ void handle_json_message(const std::string& message, int client_sock) {
             string comment = j["comment"];
             string menu_name = j["menu_name"];
             string star_rank = j["star_rank"];
-            string time = getCurrentDateOnly();
+            string time = getCurrentTimeString();
             string first_name = get_first_utf8_char(user_name);
             string full_name = first_name + "**";
             cout << "날짜 등록" << time << endl;
